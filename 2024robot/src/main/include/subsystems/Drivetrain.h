@@ -8,9 +8,9 @@
 
 #include <frc2/command/SubsystemBase.h>
 
-#include <rev/CANSparkMax.h>
-#include <rev/CANSparkMaxLowLevel.h>
-#include <rev/SparkMaxRelativeEncoder.h>
+#include <CANVenom.h>
+#include <ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h>
+#include <ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h>
 #include <frc/motorcontrol/MotorControllerGroup.h>
 
 #include <frc/SPI.h>
@@ -43,10 +43,6 @@ class Drivetrain : public frc2::SubsystemBase {
 
   double getHeadingAsAngle();
 
-  frc::Rotation2d getPitch();
-
-  double getPitchAsAngle();
-
   void resetEncoders();
 
   double getLeftEncoderDistance();
@@ -63,20 +59,14 @@ class Drivetrain : public frc2::SubsystemBase {
   void Periodic() override;
 
  private:
-  rev::CANSparkMax leftSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
-  rev::CANSparkMax leftSpark2{drivetrain::kLeftDriveSparkPort2, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
-  rev::CANSparkMax leftSpark3{drivetrain::kLeftDriveSparkPort3, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
+  ctre::phoenix::motorcontrol::can::WPI_TalonSRX leftDriveTalon{drivetrain::kLeftDriveTalonPort};
+  frc::CANVenom leftDriveVenom{drivetrain::kLeftDriveVenomPort};
 
-  rev::CANSparkMax rightSpark1{drivetrain::kRightDriveSparkPort1, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
-  rev::CANSparkMax rightSpark2{drivetrain::kRightDriveSparkPort2, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
-  rev::CANSparkMax rightSpark3{drivetrain::kRightDriveSparkPort3, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX rightDriveVictor{drivetrain::kRightDriveVictorPort};
+  frc::CANVenom rightDriveVenom{drivetrain::kRightDriveVenomPort};
 
-  rev::SparkMaxRelativeEncoder leftEncoder = leftSpark1.GetEncoder();
-  rev::SparkMaxRelativeEncoder rightEncoder = rightSpark1.GetEncoder();
-
-
-  frc::MotorControllerGroup leftMotors{leftSpark1, leftSpark2, leftSpark3};
-  frc::MotorControllerGroup rightMotors{rightSpark1, rightSpark2, rightSpark3};
+  frc::MotorControllerGroup leftMotors{leftDriveTalon, leftDriveVenom};
+  frc::MotorControllerGroup rightMotors{rightDriveVictor, rightDriveVenom};
 
   //frc::DifferentialDrive drive{leftMotors, rightMotors};
 
