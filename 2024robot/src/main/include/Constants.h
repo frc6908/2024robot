@@ -16,14 +16,8 @@
  * they are needed.
  */
 
-namespace drivetrain {
-    const int kLeftDriveTalonPort = 16;
-    const int kLeftDriveVenomPort = 19;
+namespace OperatorConstants {
 
-    const int kRightDriveVictorPort = 17;
-    const int kRightDriveVenomPort = 18; 
+inline constexpr int kDriverControllerPort = 0;
 
-    const int kWheelDiameter = 6;
-    
-    const double kDT = 0.02;
-}
+}  // namespace OperatorConstants
