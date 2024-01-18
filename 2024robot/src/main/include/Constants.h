@@ -19,3 +19,18 @@ namespace OperatorConstants {
 inline constexpr int kDriverControllerPort = 0;
 
 }  // namespace OperatorConstants
+
+namespace drivetrain {
+    // Temporary port numbers; change later.
+    const int kLeftDriveSparkPort1 = 1;
+    const int kLeftDriveSparkPort2 = 2;
+    const int kLeftDriveSparkPort3 = 3;
+
+    const int kRightDriveSparkPort1 = 19;
+    const int kRightDriveSparkPort2 = 18;
+    const int kRightDriveSparkPort3 = 17; 
+
+    const int kWheelDiameter = 6;   //inches
+    
+    const double kDT = 0.02;
+}
