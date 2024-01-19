@@ -63,7 +63,7 @@ double Drivetrain::getRightEncoderDistance() {
 }
 
 double Drivetrain::venomTicksToInches(double revolutions) {
-    return M_PI * drivetrain::WheelDiameter * revolutions / 10.71;
+    return M_PI * drivetrain::wheelDiameter * revolutions / 10.71;
 }
 
 void Drivetrain::resetGyro() {
