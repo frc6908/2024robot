@@ -62,11 +62,11 @@ class Drivetrain : public frc2::SubsystemBase {
   ctre::phoenix::motorcontrol::can::WPI_TalonSRX leftDriveTalon{drivetrain::kLeftDriveTalonPort};
   frc::CANVenom leftDriveVenom{drivetrain::kLeftDriveVenomPort};
 
-  ctre::phoenix::motorcontrol::can::WPI_VictorSPX rightDriveVictor{drivetrain::kRightDriveVictorPort};
+  ctre::phoenix::motorcontrol::can::WPI_TalonSRX rightDriveTalon{drivetrain::kRightDriveTalonPort};
   frc::CANVenom rightDriveVenom{drivetrain::kRightDriveVenomPort};
 
   frc::MotorControllerGroup leftMotors{leftDriveTalon, leftDriveVenom};
-  frc::MotorControllerGroup rightMotors{rightDriveVictor, rightDriveVenom};
+  frc::MotorControllerGroup rightMotors{rightDriveTalon, rightDriveVenom};
 
   //frc::DifferentialDrive drive{leftMotors, rightMotors};
 

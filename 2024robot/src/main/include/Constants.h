@@ -21,3 +21,16 @@ namespace OperatorConstants {
 inline constexpr int kDriverControllerPort = 0;
 
 }  // namespace OperatorConstants
+
+
+namespace drivetrain {
+    //example values not set
+    const int kLeftDriveVenomPort = 1;
+    const int kLeftDriveTalonPort = 2; 
+
+    const int kRightDriveVenomPort = 3;
+    const int kRightDriveTalonPort = 4;
+
+    const int wheelDiameter = 6; //inches 
+
+}
