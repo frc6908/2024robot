@@ -40,7 +40,7 @@ void Drivetrain::flipDT() {
     flipped = !flipped;
 }
 
-frc::Rotation2d Drivetrain::getHeading() {
+/*frc::Rotation2d Drivetrain::getHeading() {
     units::degree_t deg{-gyro.GetAngle()};
     return frc::Rotation2d(deg);
 }
@@ -80,3 +80,4 @@ void Drivetrain::resetGyro() {
 }
 // This method will be called once per scheduler run
 void Drivetrain::Periodic() {}
+/*

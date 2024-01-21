@@ -63,19 +63,19 @@ class Drivetrain : public frc2::SubsystemBase {
   //TalonSRX leftDrive1 = new TalonSRX(drivetrain::kLeftDriveTalonPort);
   //frc::CANVenom leftDrive2{drivetrain::kLeftDriveVenomPort};
 
-  rev::CANSparkMax leftSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
-  rev::CANSparkMax leftSpark2{drivetrain::kLeftDriveSparkPort2, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
+  rev::CANSparkMax leftSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless};
+  rev::CANSparkMax leftSpark2{drivetrain::kLeftDriveSparkPort2, rev::CANSparkLowLevel::MotorType::kBrushless};
 
   //TalonSRX rightDrive1 = new TalonSRX(drivetrain::kRightDriveTalonPort);
   //frc::CANVenom rightDrive2(drivetrain::kRightDriveVenomPort);
 
-  rev::CANSparkMax rightSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
-  rev::CANSparkMax rightSpark2{drivetrain::kLeftDriveSparkPort2, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
+  rev::CANSparkMax rightSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless};
+  rev::CANSparkMax rightSpark2{drivetrain::kLeftDriveSparkPort2, rev::CANSparkLowLevel::MotorType::kBrushless};
   frc::MotorControllerGroup leftMotors{rightSpark1, leftSpark1};
   frc::MotorControllerGroup rightMotors{rightSpark2, leftSpark2};
 
-  rev::SparkRelativeEncoder leftEncoder = leftSpark1.GetEncoder();
-  rev::SparkRelativeEncoder rightEncoder = rightSpark1.GetEncoder();
+  //rev::SparkRelativeEncoder leftEncoder = leftSpark1.GetEncoder();
+  //rev::SparkRelativeEncoder rightEncoder = rightSpark1.GetEncoder();
 
   frc::DifferentialDrive drive{leftMotors, rightMotors};
 
