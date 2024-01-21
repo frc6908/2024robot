@@ -9,8 +9,9 @@
 #include <frc2/command/SubsystemBase.h>
 
 #include <CANVenom.h>
-#include <ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h>
+#include <ctre/phoenix/motorcontrol/can/TalonFX.h>
 #include <ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h>
+#include <rev/CANSparkMax.h>
 #include <frc/motorcontrol/MotorControllerGroup.h>
 
 #include <frc/SPI.h>
@@ -59,16 +60,24 @@ class Drivetrain : public frc2::SubsystemBase {
   void Periodic() override;
 
  private:
-  ctre::phoenix::motorcontrol::can::WPI_TalonSRX leftDriveTalon{drivetrain::kLeftDriveTalonPort};
-  frc::CANVenom leftDriveVenom{drivetrain::kLeftDriveVenomPort};
+  //TalonSRX leftDrive1 = new TalonSRX(drivetrain::kLeftDriveTalonPort);
+  //frc::CANVenom leftDrive2{drivetrain::kLeftDriveVenomPort};
 
-  ctre::phoenix::motorcontrol::can::WPI_TalonSRX rightDriveTalon{drivetrain::kRightDriveTalonPort};
-  frc::CANVenom rightDriveVenom{drivetrain::kRightDriveVenomPort};
+  rev::CANSparkMax leftSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
+  rev::CANSparkMax leftSpark2{drivetrain::kLeftDriveSparkPort2, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
 
-  frc::MotorControllerGroup leftMotors{leftDriveTalon, leftDriveVenom};
-  frc::MotorControllerGroup rightMotors{rightDriveTalon, rightDriveVenom};
+  //TalonSRX rightDrive1 = new TalonSRX(drivetrain::kRightDriveTalonPort);
+  //frc::CANVenom rightDrive2(drivetrain::kRightDriveVenomPort);
 
-  //frc::DifferentialDrive drive{leftMotors, rightMotors};
+  rev::CANSparkMax rightSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
+  rev::CANSparkMax rightSpark2{drivetrain::kLeftDriveSparkPort2, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
+  frc::MotorControllerGroup leftMotors{rightSpark1, leftSpark1};
+  frc::MotorControllerGroup rightMotors{rightSpark2, leftSpark2};
+
+  rev::SparkRelativeEncoder leftEncoder = leftSpark1.GetEncoder();
+  rev::SparkRelativeEncoder rightEncoder = rightSpark1.GetEncoder();
+
+  frc::DifferentialDrive drive{leftMotors, rightMotors};
 
   AHRS gyro{frc::SPI::Port::kMXP};
 

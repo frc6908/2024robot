@@ -49,17 +49,26 @@ double Drivetrain::getHeadingAsAngle() {
     return getHeading().Degrees().value();
 }
 
+frc::Rotation2d Drivetrain::getPitch() {
+    units::degree_t deg{gyro.GetPitch()};
+    return frc::Rotation2d(deg);
+}
+
+double Drivetrain::getPitchAsAngle() {
+    return getPitch().Degrees().value();
+}
+
 void Drivetrain::resetEncoders() {
-    leftDriveVenom.ResetPosition();
-    rightDriveVenom.ResetPosition();
+    leftEncoder.SetPosition(0.0);
+    rightEncoder.SetPosition(0.0);
 }
 
 double Drivetrain::getLeftEncoderDistance() {
-    return leftDriveVenom.GetPosition();
+    return leftEncoder.GetPosition();
 }
 
 double Drivetrain::getRightEncoderDistance() {
-    return rightDriveVenom.GetPosition();
+    return rightEncoder.GetPosition();
 }
 
 double Drivetrain::venomTicksToInches(double revolutions) {
