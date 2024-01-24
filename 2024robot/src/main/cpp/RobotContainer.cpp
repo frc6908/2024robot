@@ -34,7 +34,7 @@ void RobotContainer::ConfigureBindings() {
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
   frc2::JoystickButton flipDriveTrain(&m_joystick, 8);
-  flipDriveTrain.WhenPressed(new FlipDrivetrain(&m_drivetrain));
+  FlipDrivetrain.WhenPressed(new FlipDrivetrain(&m_drivetrain));
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {

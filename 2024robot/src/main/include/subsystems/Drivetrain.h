@@ -12,6 +12,9 @@
 #include <ctre/phoenix/motorcontrol/can/TalonFX.h>
 #include <ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h>
 #include <rev/CANSparkMax.h>
+#include <rev/CANSparkLowLevel.h>
+#include <rev/CANSparkBase.h>
+#include <rev/SparkRelativeEncoder.h>
 #include <frc/motorcontrol/MotorControllerGroup.h>
 
 #include <frc/SPI.h>
@@ -46,11 +49,15 @@ class Drivetrain : public frc2::SubsystemBase {
 
   void resetEncoders();
 
+  frc::Rotation2d getPitch();
+
+  double getPitchAsAngle();
+
   double getLeftEncoderDistance();
 
   double getRightEncoderDistance();
 
-  double venomTicksToInches(double);
+  double neoTicksToInches(double);
 
   void resetGyro();
 
@@ -74,9 +81,10 @@ class Drivetrain : public frc2::SubsystemBase {
   frc::MotorControllerGroup leftMotors{rightSpark1, leftSpark1};
   frc::MotorControllerGroup rightMotors{rightSpark2, leftSpark2};
 
-  //rev::SparkRelativeEncoder leftEncoder = leftSpark1.GetEncoder();
-  //rev::SparkRelativeEncoder rightEncoder = rightSpark1.GetEncoder();
-
+  rev::SparkRelativeEncoder leftEncoder = leftSpark1.GetEncoder(rev::SparkRelativeEncoder::Type::kQuadrature, 4096);
+  rev::SparkRelativeEncoder rightEncoder = rightSpark1.GetEncoder(rev::SparkRelativeEncoder::Type::kQuadrature, 4096);
+ // rev::SparkRelativeEncoder::leftEncoder(SparkRelativeEncoder && rhs);
+ // rev::SparkRelativeEncoder rightEncoder = rightSpark1.GetEncoder();
   frc::DifferentialDrive drive{leftMotors, rightMotors};
 
   AHRS gyro{frc::SPI::Port::kMXP};

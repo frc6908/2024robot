@@ -71,7 +71,7 @@ double Drivetrain::getRightEncoderDistance() {
     return rightEncoder.GetPosition();
 }
 
-double Drivetrain::venomTicksToInches(double revolutions) {
+double Drivetrain::neoTicksToInches(double revolutions) {
     return M_PI * drivetrain::wheelDiameter * revolutions / 10.71;
 }
 
