@@ -29,6 +29,13 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <iostream>
 
+#include <pathplanner/lib/auto/AutoBuilder.h>
+#include <pathplanner/lib/util/HolonomicPathFollowerConfig.h>
+#include <pathplanner/lib/util/PIDConstants.h>
+#include <pathplanner/lib/util/ReplanningConfig.h>
+#include <frc/geometry/Pose2d.h>
+#include <frc/kinematics/ChassisSpeeds.h>
+
 #include "Constants.h"
 
 class Drivetrain : public frc2::SubsystemBase {
@@ -96,3 +103,12 @@ class Drivetrain : public frc2::SubsystemBase {
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };
+
+AutoBuilder::configureRamsete(
+        [this](){ return getPose(); }, // Robot pose supplier
+        [this](frc::Pose2d pose){ resetPose(pose); }, // Method to reset odometry (will be called if your auto has a starting pose)
+        [this](){ return getRobotRelativeSpeeds(); }, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
+        [this](frc::ChassisSpeeds speeds){ driveRobotRelative(speeds); }, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
+        ReplanningConfig(), // Default path replanning config. See the API for the options here
+        this // Reference to this subsystem to set requirements
+);

@@ -3,23 +3,34 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "RobotContainer.h"
+#include <pathplanner/lib/auto/NamedCommands.h>
+#include <pathplanner/lib/commands/PathPlannerAuto.h>
 #include <iostream>
 
 #include <frc/shuffleboard/Shuffleboard.h>
 
+#include <memory>
 
-RobotContainer::RobotContainer() {
+using namespace pathplanner;
+
+
+RobotContainer::RobotContainer() : m_drivetrain(){
   // Initialize all of your commands and subsystems here
-  frc::Shuffleboard::GetTab("Autonomous").Add(m_chooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
+
   m_chooser.SetDefaultOption("Slow Auto", &m_slowauto);
+  frc::Shuffleboard::GetTab("Autonomous").Add(m_chooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
+  
 
   // Configure the button bindings
-
+  configureButtonBindings();
   // need lambda function to capture the value of the double function for continuous data getting 
   m_drivetrain.SetDefaultCommand(ArcadeDrive(&m_drivetrain, [this] { return -m_joystick.GetY(); }, [this] { return m_joystick.GetX(); }, [this] { return m_joystick.GetThrottle(); }));
 
   // Configure the button bindings
-  ConfigureBindings();
+
+
+  //pathplannertest
+  
 }
 
 void RobotContainer::ConfigureBindings() {
@@ -39,5 +50,6 @@ void RobotContainer::ConfigureBindings() {
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
-  return m_chooser.GetSelected();
+  //return m_chooser.GetSelected();
+  return PathPlannerAuto("Example Auto").ToPtr();
 }
