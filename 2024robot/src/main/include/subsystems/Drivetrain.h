@@ -90,9 +90,7 @@ class Drivetrain : public frc2::SubsystemBase {
 
   rev::SparkRelativeEncoder leftEncoder = leftSpark1.GetEncoder(rev::SparkRelativeEncoder::Type::kQuadrature, 4096);
   rev::SparkRelativeEncoder rightEncoder = rightSpark1.GetEncoder(rev::SparkRelativeEncoder::Type::kQuadrature, 4096);
- // rev::SparkRelativeEncoder::leftEncoder(SparkRelativeEncoder && rhs);
- // rev::SparkRelativeEncoder rightEncoder = rightSpark1.GetEncoder();
-  frc::DifferentialDrive drive{leftMotors, rightMotors};
+  //frc::DifferentialDrive drive{leftMotors, rightMotors};
 
   AHRS gyro{frc::SPI::Port::kMXP};
 

@@ -17,7 +17,7 @@ using namespace pathplanner;
 RobotContainer::RobotContainer() : m_drivetrain(){
   // Initialize all of your commands and subsystems here
 
-  m_chooser.SetDefaultOption("Slow Auto", &m_slowauto);
+  m_chooser.SetDefaultOption("Slow Auto", & m_slowauto);
   frc::Shuffleboard::GetTab("Autonomous").Add(m_chooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
   
 
