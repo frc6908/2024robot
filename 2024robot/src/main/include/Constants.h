@@ -56,6 +56,10 @@ namespace intake{
     const int kKicker = 15;
 }
 
+namespace oi {
+    const int kDriveJoystickPort = 0;   // drive joystick
+    const int kArmJoystickPort = 1; // elbow joystick
+}
 
 
 

@@ -22,7 +22,8 @@ RobotContainer::RobotContainer() : m_drivetrain(){
   
 
   // Configure the button bindings
-  configureButtonBindings();
+  
+  ConfigureButtonBindings();
   // need lambda function to capture the value of the double function for continuous data getting 
   m_drivetrain.SetDefaultCommand(ArcadeDrive(&m_drivetrain, [this] { return -m_joystick.GetY(); }, [this] { return m_joystick.GetX(); }, [this] { return m_joystick.GetThrottle(); }));
   // Configure the button bindings
@@ -32,18 +33,9 @@ RobotContainer::RobotContainer() : m_drivetrain(){
   
 }
 
-void RobotContainer::ConfigureBindings() {
-  // Configure your trigger bindings here
-
-  // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-  /*frc2::Trigger([this] {
-    return m_subsystem.ExampleCondition();
-  }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
-  */
-
-  // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
-  // pressed, cancelling on release.
-  frc2::JoystickButton flipDriveTrain(&m_joystick, 8);
+void RobotContainer::ConfigureButtonBindings() {
+  //drivetrain
+  frc2::JoystickButton::JoystickButton (&m_joystick, 8);
   FlipDrivetrain.WhenPressed(new FlipDrivetrain(&m_drivetrain));
 }
 

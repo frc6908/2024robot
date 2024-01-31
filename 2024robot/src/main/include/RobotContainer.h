@@ -3,9 +3,10 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #pragma once
-
+#include <frc2/command/InstantCommand.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandJoystick.h>
+#include <frc2/command/button/JoystickButton.h>
 
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc/smartdashboard/SmartDashboard.h>
@@ -47,6 +48,13 @@ class RobotContainer {
 
   //
 
+   // chooser for autonomous routines
+  frc::SendableChooser<frc2::Command*> m_chooser;
+  SlowAuto m_slowauto{&m_drivetrain};
+
+  //joystick
+  frc::Joystick m_joystick{oi::kDriveJoystickPort};
+  frc::Joystick m_joystickArm{oi::kArmJoystickPort};
 
 
 

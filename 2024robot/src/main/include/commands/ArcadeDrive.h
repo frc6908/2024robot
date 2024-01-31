@@ -17,7 +17,7 @@
  */
 class ArcadeDrive : public frc2::CommandHelper<frc2::Command, ArcadeDrive> {
  public:
-  ArcadeDrive::ArcadeDrive(Drivetrain*, std::function<double()>, std::function<double()>, std::function<double()>);
+  ArcadeDrive(Drivetrain*, std::function<double()>, std::function<double()>, std::function<double()>);
 
   void Initialize() override;
 
