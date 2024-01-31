@@ -16,44 +16,16 @@
  * they are needed.
  */
 
-namespace OperatorConstants {
-
-inline constexpr int kDriverControllerPort = 0;
-
-}  // namespace OperatorConstants
-
-
 namespace drivetrain {
     //example values not set
-    const int kLeftDriveVenomPort = 1;
-    const int kLeftDriveTalonPort = 2; 
-
     const int kLeftDriveSparkPort1 = 1;
     const int kLeftDriveSparkPort2 = 2;
     
-    //const int kRightDriveVenomPort = 19;
-    //const int kRightDriveTalonPort = 18;
-
     const int kRightDriveSparkPort1 = 19;
     const int kRightDriveSparkPort2 = 18;
 
     const int wheelDiameter = 6; //inches 
 
-}
-
-
-namespace arm{
-    const int kLeftArmSparkPort = 11;
-    const int kRightArmSparkPort = 12;
-}
-
-namespace shooter{
-    const int kLeftShootSparkPort = 13;
-    const int kRightShootSparkPort = 14;
-}
-
-namespace intake{
-    const int kKicker = 15;
 }
 
 namespace oi {

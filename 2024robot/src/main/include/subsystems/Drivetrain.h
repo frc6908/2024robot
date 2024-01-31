@@ -78,13 +78,13 @@ class Drivetrain : public frc2::SubsystemBase {
   //frc::CANVenom leftDrive2{drivetrain::kLeftDriveVenomPort};
 
 rev::CANSparkMax leftSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining left side spark motor 1
-rev::CANSparkMax leftSpark2{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining left side spark motor 2
+rev::CANSparkMax leftSpark2{drivetrain::kLeftDriveSparkPort2, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining left side spark motor 2
 
   //TalonSRX rightDrive1 = new TalonSRX(drivetrain::kRightDriveTalonPort);
   //frc::CANVenom rightDrive2(drivetrain::kRightDriveVenomPort);
 
   rev::CANSparkMax rightSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining right side motor 1
-  rev::CANSparkMax rightSpark2{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining right side motor 2
+  rev::CANSparkMax rightSpark2{drivetrain::kLeftDriveSparkPort2, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining right side motor 2
 
 
   //frc::MotorControllerGroup::MotorControllerGroup leftMotors{rightSpark1, leftSpark1}; // assigning left side motors into one group
