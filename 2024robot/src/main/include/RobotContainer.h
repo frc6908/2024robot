@@ -50,7 +50,7 @@ class RobotContainer {
 
   //joystick
   frc::Joystick m_joystick{oi::kDriveJoystickPort};
-  frc::Joystick m_joystickArm{oi::kArmJoystickPort};
+  // frc::Joystick m_joystickArm{oi::kArmJoystickPort};
 
 
   void ConfigureButtonBindings();
