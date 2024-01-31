@@ -17,7 +17,7 @@ using namespace pathplanner;
 RobotContainer::RobotContainer() : m_drivetrain(){
   // Initialize all of your commands and subsystems here
 
-  m_chooser.SetDefaultOption("Slow Auto", & m_slowauto);
+  m_chooser.SetDefaultOption("Slow Auto", &m_slowauto);
   frc::Shuffleboard::GetTab("Autonomous").Add(m_chooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
   
 
@@ -35,8 +35,8 @@ RobotContainer::RobotContainer() : m_drivetrain(){
 
 void RobotContainer::ConfigureButtonBindings() {
   //drivetrain
-  frc2::JoystickButton::JoystickButton (&m_joystick, 8);
-  FlipDrivetrain.WhenPressed(new FlipDrivetrain(&m_drivetrain));
+  frc2::JoystickButton flip(&m_joystick, 8);
+  flip.OnTrue(new FlipDrivetrain(&m_drivetrain));
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
