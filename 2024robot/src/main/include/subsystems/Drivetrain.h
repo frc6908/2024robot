@@ -9,8 +9,8 @@
 #include <frc2/command/SubsystemBase.h>
 
 #include <CANVenom.h>
-#include <ctre/phoenix/motorcontrol/can/TalonFX.h>
-#include <ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h>
+#include <ctre/phoenix6/TalonFX.hpp>
+//#include <ctre/phoenix6/VictorSFX.hpp>
 #include <rev/CANSparkMax.h>
 #include <rev/CANSparkLowLevel.h>
 #include <rev/CANSparkBase.h>
@@ -77,16 +77,19 @@ class Drivetrain : public frc2::SubsystemBase {
   //TalonSRX leftDrive1 = new TalonSRX(drivetrain::kLeftDriveTalonPort);
   //frc::CANVenom leftDrive2{drivetrain::kLeftDriveVenomPort};
 
-  rev::CANSparkMax leftSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless};
-  rev::CANSparkMax leftSpark2{drivetrain::kLeftDriveSparkPort2, rev::CANSparkLowLevel::MotorType::kBrushless};
+rev::CANSparkMax leftSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining left side spark motor 1
+rev::CANSparkMax leftSpark2{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining left side spark motor 2
 
   //TalonSRX rightDrive1 = new TalonSRX(drivetrain::kRightDriveTalonPort);
   //frc::CANVenom rightDrive2(drivetrain::kRightDriveVenomPort);
 
-  rev::CANSparkMax rightSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless};
-  rev::CANSparkMax rightSpark2{drivetrain::kLeftDriveSparkPort2, rev::CANSparkLowLevel::MotorType::kBrushless};
-  frc::MotorControllerGroup leftMotors{rightSpark1, leftSpark1};
-  frc::MotorControllerGroup rightMotors{rightSpark2, leftSpark2};
+  rev::CANSparkMax rightSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining right side motor 1
+  rev::CANSparkMax rightSpark2{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining right side motor 2
+
+
+  //frc::MotorControllerGroup::MotorControllerGroup leftMotors{rightSpark1, leftSpark1}; // assigning left side motors into one group
+  //frc::MotorControllerGroup::MotorControllerGroup rightMotors{rightSpark2, leftSpark2}; // assigning right side motors into one group
+  
 
   rev::SparkRelativeEncoder leftEncoder = leftSpark1.GetEncoder(rev::SparkRelativeEncoder::Type::kQuadrature, 4096);
   rev::SparkRelativeEncoder rightEncoder = rightSpark1.GetEncoder(rev::SparkRelativeEncoder::Type::kQuadrature, 4096);
@@ -102,7 +105,7 @@ class Drivetrain : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
 };
 
-AutoBuilder::configureRamsete(
+/*AutoBuilder::configureRamsete(
         [this](){ return getPose(); }, // Robot pose supplier
         [this](frc::Pose2d pose){ resetPose(pose); }, // Method to reset odometry (will be called if your auto has a starting pose)
         [this](){ return getRobotRelativeSpeeds(); }, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
@@ -110,3 +113,4 @@ AutoBuilder::configureRamsete(
         ReplanningConfig(), // Default path replanning config. See the API for the options here
         this // Reference to this subsystem to set requirements
 );
+*/

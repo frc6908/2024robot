@@ -16,7 +16,7 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class FlipDrivetrain : public frc2::CommandHelper<frc2::CommandBase, FlipDrivetrain> {
+class FlipDrivetrain : public frc2::CommandHelper<frc2::Command, FlipDrivetrain> {
  public:
   FlipDrivetrain(Drivetrain*);
 

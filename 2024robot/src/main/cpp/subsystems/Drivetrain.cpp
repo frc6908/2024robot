@@ -9,7 +9,8 @@
 #include "networktables/NetworkTableValue.h"
 
 Drivetrain::Drivetrain() {
-    rightMotors.SetInverted(1); // inverts the right drive motors
+    rightSpark1.SetInverted(1); 
+    rightSpark2.SetInverted(1);// inverts the right drive motors
     resetGyro();
 }
 
@@ -18,11 +19,15 @@ void Drivetrain::setDriveMotors(double left, double right) {
     //tab.Add("Right Motor", right);
     
     if (flipped) {
-        leftMotors.Set(-right);
-        rightMotors.Set(-left);
+        leftSpark1.Set(-right);
+        leftSpark2.Set(-right);
+        rightSpark1.Set(-left);
+        rightSpark2.Set(-left);
     } else {
-        leftMotors.Set(left);
-        rightMotors.Set(right);
+        leftSpark1.Set(left);
+        leftSpark2.Set(left);
+        rightSpark1.Set(right);
+        rightSpark2.Set(right);
     }
     //NetworkTableEntry testTab = Shuffleboard.getTab("Test").add("Pi", 3.14);
 }
@@ -32,8 +37,10 @@ void Drivetrain::arcadeDrive(double throttle, double turn) {
 }
 
 void Drivetrain::stop() {
-    leftMotors.Set(0);
-    rightMotors.Set(0);
+    leftSpark1.Set(0);
+    leftSpark2.Set(0);
+    rightSpark1.Set(0);
+    rightSpark2.Set(0);
 }
 
 void Drivetrain::flipDT() {

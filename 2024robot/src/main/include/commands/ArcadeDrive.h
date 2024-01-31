@@ -15,9 +15,9 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class ArcadeDrive : public frc2::CommandHelper<frc2::CommandBase, ArcadeDrive> {
+class ArcadeDrive : public frc2::CommandHelper<frc2::Command, ArcadeDrive> {
  public:
-  ArcadeDrive(Drivetrain*, std::function<double()>, std::function<double()>, std::function<double()>);
+  ArcadeDrive::ArcadeDrive(Drivetrain*, std::function<double()>, std::function<double()>, std::function<double()>);
 
   void Initialize() override;
 
