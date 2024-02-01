@@ -11,6 +11,7 @@
 #include <frc/kinematics/ChassisSpeeds.h>
 #include <iostream>
 
+
 #include <frc/shuffleboard/Shuffleboard.h>
 
 #include <memory>
@@ -37,7 +38,8 @@ RobotContainer::RobotContainer() : m_drivetrain(){
   NamedCommands::registerCommand("marker2", frc2::cmd::Print("Passed marker 2"));
 
   
-  
+    // Configure the AutoBuilder last
+    
 }
 
 void RobotContainer::ConfigureButtonBindings() {

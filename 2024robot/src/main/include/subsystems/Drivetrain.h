@@ -10,7 +10,7 @@
 
 #include <CANVenom.h>
 #include <ctre/phoenix6/TalonFX.hpp>
-//#include <ctre/phoenix6/VictorSFX.hpp>
+#include <ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h>
 #include <rev/CANSparkMax.h>
 #include <rev/CANSparkLowLevel.h>
 #include <rev/CANSparkBase.h>
@@ -78,9 +78,22 @@ class Drivetrain : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
+  /*AutoBuilder::configureRamsete(
+        [this](){ return getPose(); }, // Robot pose supplier
+        [this](frc::Pose2d pose){ resetPose(pose); }, // Method to reset odometry (will be called if your auto has a starting pose)
+        [this](){ return getRobotRelativeSpeeds(); }, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
+        [this](frc::ChassisSpeeds speeds){ driveRobotRelative(speeds); }, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
+        ReplanningConfig(), // Default path replanning config. See the API for the options here
+        this Drivetrain.h // Reference to this subsystem to set requirements
+    );
+    */
+
+
 
 
  private:
+
+
   //TalonSRX leftDrive1 = new TalonSRX(drivetrain::kLeftDriveTalonPort);
   //frc::CANVenom leftDrive2{drivetrain::kLeftDriveVenomPort};
 
@@ -112,10 +125,13 @@ class Drivetrain : public frc2::SubsystemBase {
 
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-
+  
 
   
 };
+
+
+
 
 
 
