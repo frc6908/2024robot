@@ -47,6 +47,8 @@ class RobotContainer {
    // chooser for autonomous routines
   frc::SendableChooser<frc2::Command*> m_chooser;
   SlowAuto m_slowauto{&m_drivetrain};
+  std::unique_ptr<frc2::Command> exampleAuto;
+  std::unique_ptr<frc2::Command> pieceAuto;
 
   //joystick
   frc::Joystick m_joystick{oi::kDriveJoystickPort};
@@ -54,4 +56,6 @@ class RobotContainer {
 
 
   void ConfigureButtonBindings();
+
+  
 };

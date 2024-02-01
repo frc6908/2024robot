@@ -8,10 +8,18 @@
 #include "networktables/NetworkTableEntry.h"
 #include "networktables/NetworkTableValue.h"
 
+
+#include <pathplanner/lib/auto/AutoBuilder.h>
+#include <pathplanner/lib/util/ReplanningConfig.h>
+#include <frc/geometry/Pose2d.h>
+#include <frc/kinematics/ChassisSpeeds.h>
+
+using namespace pathplanner;
 Drivetrain::Drivetrain() {
     rightSpark1.SetInverted(1); 
     rightSpark2.SetInverted(1);// inverts the right drive motors
     resetGyro();
+
 }
 
 void Drivetrain::setDriveMotors(double left, double right) {
@@ -87,3 +95,4 @@ void Drivetrain::resetGyro() {
 }
 // This method will be called once per scheduler run
 void Drivetrain::Periodic() {}
+

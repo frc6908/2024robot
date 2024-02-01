@@ -38,7 +38,11 @@
 
 #include "Constants.h"
 
+using namespace pathplanner;
+
 class Drivetrain : public frc2::SubsystemBase {
+  
+  
  public:
   Drivetrain();
 
@@ -67,18 +71,21 @@ class Drivetrain : public frc2::SubsystemBase {
   double neoTicksToInches(double);
 
   void resetGyro();
+  
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
 
+
+
  private:
   //TalonSRX leftDrive1 = new TalonSRX(drivetrain::kLeftDriveTalonPort);
   //frc::CANVenom leftDrive2{drivetrain::kLeftDriveVenomPort};
 
-rev::CANSparkMax leftSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining left side spark motor 1
-rev::CANSparkMax leftSpark2{drivetrain::kLeftDriveSparkPort2, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining left side spark motor 2
+  rev::CANSparkMax leftSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining left side spark motor 1
+  rev::CANSparkMax leftSpark2{drivetrain::kLeftDriveSparkPort2, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining left side spark motor 2
 
   //TalonSRX rightDrive1 = new TalonSRX(drivetrain::kRightDriveTalonPort);
   //frc::CANVenom rightDrive2(drivetrain::kRightDriveVenomPort);
@@ -99,18 +106,16 @@ rev::CANSparkMax leftSpark2{drivetrain::kLeftDriveSparkPort2, rev::CANSparkLowLe
 
   bool flipped = false;
 
+  
+
   frc::ShuffleboardTab& tab = frc::Shuffleboard::GetTab("Test");
 
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
+
+
+  
 };
 
-/*AutoBuilder::configureRamsete(
-        [this](){ return getPose(); }, // Robot pose supplier
-        [this](frc::Pose2d pose){ resetPose(pose); }, // Method to reset odometry (will be called if your auto has a starting pose)
-        [this](){ return getRobotRelativeSpeeds(); }, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
-        [this](frc::ChassisSpeeds speeds){ driveRobotRelative(speeds); }, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
-        ReplanningConfig(), // Default path replanning config. See the API for the options here
-        this // Reference to this subsystem to set requirements
-);
-*/
+
+
