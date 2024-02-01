@@ -73,6 +73,8 @@ double Drivetrain::getPitchAsAngle() {
     return getPitch().Degrees().value();
 }
 
+
+/*
 void Drivetrain::resetEncoders() {
     leftEncoder.SetPosition(0.0);
     rightEncoder.SetPosition(0.0);
@@ -85,7 +87,7 @@ double Drivetrain::getLeftEncoderDistance() {
 double Drivetrain::getRightEncoderDistance() {
     return rightEncoder.GetPosition();
 }
-
+*/
 double Drivetrain::neoTicksToInches(double revolutions) {
     return M_PI * drivetrain::wheelDiameter * revolutions / 10.71;
 }
