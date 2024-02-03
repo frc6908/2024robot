@@ -8,18 +8,35 @@
 #include "networktables/NetworkTableEntry.h"
 #include "networktables/NetworkTableValue.h"
 
-
 #include <pathplanner/lib/auto/AutoBuilder.h>
+#include <pathplanner/lib/util/HolonomicPathFollowerConfig.h>
+#include <pathplanner/lib/util/PIDConstants.h>
 #include <pathplanner/lib/util/ReplanningConfig.h>
 #include <frc/geometry/Pose2d.h>
+#include <frc/geometry/Rotation2d.h>
+#include <frc/geometry/Translation2d.h>
 #include <frc/kinematics/ChassisSpeeds.h>
 
 using namespace pathplanner;
 Drivetrain::Drivetrain() {
+    
     rightSpark1.SetInverted(1); 
     rightSpark2.SetInverted(1);// inverts the right drive motors
     resetGyro();
 
+
+    AutoBuilder::configureRamsete(
+    [this]() -> frc::Pose2d { return getPose(); },              // Lambda for Robot pose supplier
+    [this](frc::Pose2d pose) { resetPose(pose); },              // Lambda for resetting odometry
+    [this]() -> frc::ChassisSpeeds { return getRobotRelativeSpeeds(); },  // Lambda for ChassisSpeeds supplier (MUST BE ROBOT RELATIVE)
+    [this](frc::ChassisSpeeds speeds) { driveRobotRelative(speeds); },   // Lambda for driving the robot given ROBOT RELATIVE ChassisSpeeds
+    ReplanningConfig(),                                         // Default path replanning config
+    [this]() -> bool { /* Implement shouldFlipPath logic here */ return true; },  // Lambda for shouldFlipPath
+    this                                                        // Reference to this subsystem to set requirements
+);
+
+
+    
 }
 
 void Drivetrain::setDriveMotors(double left, double right) {
@@ -95,6 +112,8 @@ double Drivetrain::neoTicksToInches(double revolutions) {
 void Drivetrain::resetGyro() {
     gyro.Reset();
 }
+
+
 // This method will be called once per scheduler run
 void Drivetrain::Periodic() {}
 
