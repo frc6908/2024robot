@@ -73,6 +73,19 @@ class Drivetrain : public frc2::SubsystemBase {
 
   void resetGyro();
   
+  frc::Pose2d getPose();
+
+  void ResetOdometry(frc::Pose2d resetPose());
+
+  
+
+  
+
+
+  
+
+
+  
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
