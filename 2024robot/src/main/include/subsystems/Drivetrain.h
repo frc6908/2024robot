@@ -72,6 +72,10 @@ class Drivetrain : public frc2::SubsystemBase {
   double neoTicksToInches(double);
 
   void resetGyro();
+
+  double getXVelocity();
+
+  double get
   
   frc::Pose2d getPose();
 
