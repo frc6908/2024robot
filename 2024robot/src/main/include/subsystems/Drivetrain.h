@@ -36,6 +36,7 @@
 #include <pathplanner/lib/util/ReplanningConfig.h>
 #include <frc/geometry/Pose2d.h>
 #include <frc/kinematics/ChassisSpeeds.h>
+#include <frc/kinematics/DifferentialDriveWheelSpeeds.h>
 
 #include "Constants.h"
 
@@ -80,12 +81,6 @@ class Drivetrain : public frc2::SubsystemBase {
   frc::ChassisSpeeds getRobotRelativeSpeeds();
 
   frc::DifferentialDriveWheelSpeeds driveRobotRelative(frc::ChassisSpeeds);
-
-
-
-
-
-
 
   void resetPose(frc::Pose2d resetPosition);
 

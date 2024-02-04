@@ -92,8 +92,11 @@ frc::Rotation2d Drivetrain::getPitch() {
 
 
 frc::ChassisSpeeds Drivetrain::getRobotRelativeSpeeds(){
-    
-    frc::ChassisSpeeds speeds{gyro.GetVelocityX(), gyro.GetVelocityY(),
+
+    units::meters_per_second_t speedX{gyro.GetVelocityX()};
+    units::meters_per_second_t speedY{gyro.GetVelocityY()};
+
+    frc::ChassisSpeeds speeds{speedX, speedY,
     units::radians_per_second_t(std::numbers::pi)};
     return frc::ChassisSpeeds(speeds);
 }
