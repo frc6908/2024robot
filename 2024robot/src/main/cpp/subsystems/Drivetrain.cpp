@@ -17,6 +17,8 @@
 #include <frc/geometry/Translation2d.h>
 #include <frc/kinematics/ChassisSpeeds.h>
 
+#include <units/velocity.h>
+
 using namespace pathplanner;
 Drivetrain::Drivetrain() {
     
@@ -86,12 +88,25 @@ frc::Rotation2d Drivetrain::getPitch() {
     return frc::Rotation2d(deg);
 }
 
+/*
+frc::ChassisSpeeds Drivetrain::getRobotRelativeSpeeds(){
+    frc::ChassisSpeeds speeds{(gyro.GetVelocityX()), (gyro.GetVelocityY()),
+    units::radians_per_second_t(std::numbers::pi)};
+    return frc::ChassisSpeeds(speeds);
+}
+
+frc::ChassisSpeeds Drivetrain::driveRobotRelative(){
+    return 
+}
+
+*/
+
 double Drivetrain::getPitchAsAngle() {
     return getPitch().Degrees().value();
 }
 
 
-/*
+
 void Drivetrain::resetEncoders() {
     leftEncoder.SetPosition(0.0);
     rightEncoder.SetPosition(0.0);
@@ -104,7 +119,7 @@ double Drivetrain::getLeftEncoderDistance() {
 double Drivetrain::getRightEncoderDistance() {
     return rightEncoder.GetPosition();
 }
-*/
+
 double Drivetrain::neoTicksToInches(double revolutions) {
     return M_PI * drivetrain::wheelDiameter * revolutions / 10.71;
 }
