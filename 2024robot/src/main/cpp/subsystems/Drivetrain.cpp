@@ -16,8 +16,10 @@
 #include <frc/geometry/Rotation2d.h>
 #include <frc/geometry/Translation2d.h>
 #include <frc/kinematics/ChassisSpeeds.h>
+#include <frc/kinematics/DifferentialDriveKinematics.h>
 
 #include <units/velocity.h>
+
 
 using namespace pathplanner;
 Drivetrain::Drivetrain() {
@@ -88,18 +90,27 @@ frc::Rotation2d Drivetrain::getPitch() {
     return frc::Rotation2d(deg);
 }
 
-/*
+
 frc::ChassisSpeeds Drivetrain::getRobotRelativeSpeeds(){
-    frc::ChassisSpeeds speeds{(gyro.GetVelocityX()), (gyro.GetVelocityY()),
+    
+    frc::ChassisSpeeds speeds{gyro.GetVelocityX(), gyro.GetVelocityY(),
     units::radians_per_second_t(std::numbers::pi)};
     return frc::ChassisSpeeds(speeds);
 }
 
-frc::ChassisSpeeds Drivetrain::driveRobotRelative(){
-    return 
+frc::DifferentialDriveWheelSpeeds Drivetrain::driveRobotRelative(frc::ChassisSpeeds speeds){
+    // Creating my kinematics object: track width of 23 inches (Calculated from Robot CAD)
+    frc::DifferentialDriveKinematics kinematics{23_in};
+
+// Convert to wheel speeds. Here, we can use C++17's structured bindings
+// feature to automatically split the DifferentialDriveWheelSpeeds
+// struct into left and right velocities.
+    auto [left,right] = kinematics.ToWheelSpeeds(speeds);
+    return frc::DifferentialDriveWheelSpeeds(left, right);
+
 }
 
-*/
+
 
 double Drivetrain::getPitchAsAngle() {
     return getPitch().Degrees().value();

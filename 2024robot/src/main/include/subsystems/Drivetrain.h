@@ -79,7 +79,7 @@ class Drivetrain : public frc2::SubsystemBase {
 
   frc::ChassisSpeeds getRobotRelativeSpeeds();
 
-  frc::ChassisSpeeds driveRobotRelative();
+  frc::DifferentialDriveWheelSpeeds driveRobotRelative(frc::ChassisSpeeds);
 
 
 
