@@ -90,6 +90,17 @@ frc::Rotation2d Drivetrain::getPitch() {
     return frc::Rotation2d(deg);
 }
 
+frc::Pose2d Drivetrain::getPose(){
+    units::meter_t posX{gyro.GetDisplacementX()};
+    units::meter_t posY{gyro.GetDisplacementY()};
+    units::degree_t deg{gyro.GetPitch()};
+    return frc::Pose2d(posX, posY, deg);
+}
+
+
+frc::Pose2d Drivetrain::resetPose(frc::Pose2d pose){
+    return frc::Pose2d();
+}
 
 frc::ChassisSpeeds Drivetrain::getRobotRelativeSpeeds(){
 

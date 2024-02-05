@@ -76,13 +76,12 @@ class Drivetrain : public frc2::SubsystemBase {
   
   frc::Pose2d getPose();
 
-  frc::Pose2d resetPosition();
+  frc::Pose2d resetPose(frc::Pose2d);
 
   frc::ChassisSpeeds getRobotRelativeSpeeds();
 
   frc::DifferentialDriveWheelSpeeds driveRobotRelative(frc::ChassisSpeeds);
 
-  void resetPose(frc::Pose2d resetPosition);
 
 
   /**
