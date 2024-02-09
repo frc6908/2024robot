@@ -37,5 +37,9 @@ namespace oi {
     // const int kArmJoystickPort = 1; // elbow joystick
 }
 
+namespace shooter {
+    const int kShooterSparkPort1 = 1; //change later
+    const int kShooterSparkPort2 = 2; // change later
+}
 
 
