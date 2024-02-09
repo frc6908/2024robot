@@ -14,6 +14,8 @@
 #include <rev/CANSparkLowLevel.h>
 #include <rev/CANSparkBase.h>
 #include <rev/SparkRelativeEncoder.h>
+#include "rev/Rev2mDistanceSensor.h"
+
 #include <frc/motorcontrol/MotorControllerGroup.h>
 
 #include <frc/SPI.h>
@@ -38,8 +40,10 @@ class Intake : public frc2::SubsystemBase {
         Intake();
         void setIntakeMotor(double);
         void stop();
+        double getDistance();
         void Periodic() override;
 
     private: 
         ctre::phoenix::motorcontrol::can::WPI_TalonSRX IntakeMotor{intake::kIntakeTalonPort};
+        rev::Rev2mDistanceSensor distSensor{rev::Rev2mDistanceSensor::Port::kOnboard, rev::Rev2mDistanceSensor::DistanceUnit::kMilliMeters};
 };
