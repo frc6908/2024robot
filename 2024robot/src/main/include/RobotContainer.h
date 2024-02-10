@@ -32,7 +32,7 @@
 class RobotContainer {
  public:
   RobotContainer();
-  frc2::CommandPtr GetAutonomousCommand();
+  frc2::Command* GetAutonomousCommand();
 
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -45,9 +45,9 @@ class RobotContainer {
   //
 
    // chooser for autonomous routines
-  //frc::SendableChooser<frc2::Command*> m_chooser;
-  //SlowAuto m_slowauto{&m_drivetrain};
-  std::unique_ptr<frc2::Command> exampleAuto;
+  frc::SendableChooser<frc2::Command*> m_chooser;
+  SlowAuto m_slowauto{&m_drivetrain};
+  //std::unique_ptr<frc2::Command> exampleAuto;
   //std::unique_ptr<frc2::Command> pieceAuto;
 
   //joystick

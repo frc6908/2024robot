@@ -50,9 +50,9 @@ void RobotContainer::ConfigureButtonBindings() {
 
 
   //register Autons on PathPlanner
-  exampleAuto = PathPlannerAuto("Example Auto").ToPtr().Unwrap();
+  //exampleAuto = PathPlannerAuto("Example Auto").ToPtr().Unwrap();
   //pieceAuto = PathPlannerAuto("pieceAuto").ToPtr().Unwrap();
- // m_chooser.SetDefaultOption("Example Auto", exampleAuto.get());
+  m_chooser.SetDefaultOption("Example Auto", &m_slowauto);
   /*
   //m_chooser.AddOption("pieceAuto",pieceAuto.get());
   frc::Shuffleboard::GetTab("Autonomous").Add(m_chooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
@@ -82,9 +82,9 @@ void RobotContainer::ConfigureButtonBindings() {
 
 }
 
-frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
+frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
-  //return m_chooser.GetSelected();
-  return PathPlannerAuto("Example Auto").ToPtr();
+  return m_chooser.GetSelected();
+  //return PathPlannerAuto("Example Auto").ToPtr();
 }
 

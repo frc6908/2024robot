@@ -92,13 +92,13 @@ class Drivetrain : public frc2::SubsystemBase {
 
  private:
 
-  ctre::phoenix::motorcontrol::can::WPI_TalonSRX leftSpark1{drivetrain::kLeftDriveSparkPort1};
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX leftSpark1{drivetrain::kLeftDriveSparkPort1};
   frc::CANVenom leftSpark2{drivetrain::kLeftDriveSparkPort2};
 
   //rev::CANSparkMax leftSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining left side spark motor 1
   //rev::CANSparkMax leftSpark2{drivetrain::kLeftDriveSparkPort2, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining left side spark motor 2
 
-  ctre::phoenix::motorcontrol::can::WPI_TalonSRX rightSpark1{drivetrain::kLeftDriveSparkPort1};
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX rightSpark1{drivetrain::kRightDriveSparkPort1};
   frc::CANVenom rightSpark2{drivetrain::kRightDriveSparkPort2};
 
   //rev::CANSparkMax rightSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining right side motor 1

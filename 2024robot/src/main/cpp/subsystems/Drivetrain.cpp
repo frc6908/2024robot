@@ -16,7 +16,7 @@
 #include <frc/geometry/Rotation2d.h>
 #include <frc/geometry/Translation2d.h>
 #include <frc/kinematics/ChassisSpeeds.h>
-#include <frc/kinematics/DifferentialDriveKinematics.h>
+#include <frc/kinematics/DifferentialDriveKinematics.h>\
 
 #include <units/velocity.h>
 
@@ -36,8 +36,11 @@ Drivetrain::Drivetrain() {
     [this](frc::ChassisSpeeds speeds) { driveRobotRelative(speeds); },   // Lambda for driving the robot given ROBOT RELATIVE ChassisSpeeds
     ReplanningConfig(),                                         // Default path replanning config
     [this]() -> bool { /* Implement shouldFlipPath logic here */ return true; },  // Lambda for shouldFlipPath
-    this                                                        // Reference to this subsystem to set requirements
+    this    
+                                                    // Reference to this subsystem to set requirements
 );
+
+
 
 
     
@@ -48,15 +51,15 @@ void Drivetrain::setDriveMotors(double left, double right) {
     //tab.Add("Right Motor", right);
     
     if (flipped) {
-        leftSpark1.Set(-right);
-        leftSpark2.Set(-right);
-        rightSpark1.Set(-left);
-        rightSpark2.Set(-left);
+        leftSpark1.Set(right);
+        leftSpark2.Set(right);
+        rightSpark1.Set(left);
+        rightSpark2.Set(left);
     } else {
-        leftSpark1.Set(left);
-        leftSpark2.Set(left);
-        rightSpark1.Set(right);
-        rightSpark2.Set(right);
+        leftSpark1.Set(-left);
+        leftSpark2.Set(-left);
+        rightSpark1.Set(-right);
+        rightSpark2.Set(-right);
     }
     //NetworkTableEntry testTab = Shuffleboard.getTab("Test").add("Pi", 3.14);
 }
