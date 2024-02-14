@@ -92,15 +92,13 @@ frc::Rotation2d Drivetrain::getPitch() {
 
 
 frc::Pose2d Drivetrain::getPose(){
-    units::meter_t posX{rightSpark2.GetPosition()};
-    units::meter_t posY{leftSpark2.GetPosition()};
-    units::degree_t deg{gyro.GetPitch()};
-    return frc::Pose2d(posX, posY, deg);
+    return m_odometry.GetPose();
 }
 
 
-frc::Pose2d Drivetrain::resetPose(frc::Pose2d pose){
-    return frc::Pose2d();
+void Drivetrain::resetPose(frc::Pose2d pose){
+    m_odometry.ResetPosition(gyro.GetRotation2d(), units::length::meter_t(0.0), units::length::meter_t(0.0), 
+    m_pose);
 }
 
 frc::ChassisSpeeds Drivetrain::getRobotRelativeSpeeds(){
@@ -113,7 +111,7 @@ frc::ChassisSpeeds Drivetrain::getRobotRelativeSpeeds(){
     return frc::ChassisSpeeds(speeds);
 }
 
-frc::DifferentialDriveWheelSpeeds Drivetrain::driveRobotRelative(frc::ChassisSpeeds speeds){
+void Drivetrain::driveRobotRelative(frc::ChassisSpeeds speeds){
     // Creating my kinematics object: track width of 23 inches (Calculated from Robot CAD)
     frc::DifferentialDriveKinematics kinematics{23_in};
 
@@ -121,8 +119,10 @@ frc::DifferentialDriveWheelSpeeds Drivetrain::driveRobotRelative(frc::ChassisSpe
 // feature to automatically split the DifferentialDriveWheelSpeeds
 // struct into left and right velocities.
     auto [left,right] = kinematics.ToWheelSpeeds(speeds);
-    return frc::DifferentialDriveWheelSpeeds(left, right);
-
+    rightSpark1.Set(double(right));
+    rightSpark2.Set(double(right));
+    leftSpark1.Set(double(left));
+    leftSpark2.Set(double(left));
 }
 
 
