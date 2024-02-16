@@ -17,7 +17,7 @@
 #include <frc/geometry/Translation2d.h>
 #include <frc/kinematics/ChassisSpeeds.h>
 #include <frc/kinematics/DifferentialDriveKinematics.h>\
-
+#include <frc/kinematics/DifferentialDriveOdometry.h>
 #include <units/velocity.h>
 
 
@@ -92,6 +92,7 @@ frc::Rotation2d Drivetrain::getPitch() {
     units::degree_t deg{gyro.GetPitch()};
     return frc::Rotation2d(deg);
 }
+
 
 frc::Pose2d Drivetrain::getPose(){
     return m_odometry.GetPose();
