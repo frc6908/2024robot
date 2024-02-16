@@ -38,6 +38,7 @@
 #include <frc/geometry/Pose2d.h>
 #include <frc/kinematics/ChassisSpeeds.h>
 #include <frc/kinematics/DifferentialDriveWheelSpeeds.h>
+#include <frc/kinematics/DifferentialDriveOdometry.h>
 
 #include "Constants.h"
 
@@ -77,11 +78,11 @@ class Drivetrain : public frc2::SubsystemBase {
   
   frc::Pose2d getPose();
 
-  frc::Pose2d resetPose(frc::Pose2d);
+  void resetPose(frc::Pose2d);
 
   frc::ChassisSpeeds getRobotRelativeSpeeds();
 
-  frc::DifferentialDriveWheelSpeeds driveRobotRelative(frc::ChassisSpeeds);
+  void driveRobotRelative(frc::ChassisSpeeds);
 
 
 
@@ -114,10 +115,17 @@ class Drivetrain : public frc2::SubsystemBase {
  
   //frc::DifferentialDrive drive{leftMotors, rightMotors};
 
+  
+  frc::DifferentialDriveOdometry m_odometry{gyro.GetRotation2d(), units::meter_t{leftSpark2.GetPosition()}, 
+  units::meter_t{rightSpark2.GetPosition()}};
+
   AHRS gyro{frc::SPI::Port::kMXP};
 
   bool flipped = false;
 
+  frc::Pose2d m_pose{m_odometry.Update(gyro.GetRotation2d(),
+    units::meter_t{leftSpark2.GetPosition()}, 
+  units::meter_t{rightSpark2.GetPosition()})};
   
 
   frc::ShuffleboardTab& tab = frc::Shuffleboard::GetTab("Test");
