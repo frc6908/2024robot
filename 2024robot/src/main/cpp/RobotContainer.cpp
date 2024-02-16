@@ -32,12 +32,6 @@ RobotContainer::RobotContainer() : m_drivetrain(){
   m_drivetrain.SetDefaultCommand(ArcadeDrive(&m_drivetrain, [this] { return -m_joystick.GetY(); }, [this] { return m_joystick.GetX(); }, [this] { return m_joystick.GetThrottle(); }));
   // Configure the button bindings
   
-
-  //pathplannertest
-  NamedCommands::registerCommand("marker1", frc2::cmd::Print("Passed marker 1"));
-  NamedCommands::registerCommand("marker2", frc2::cmd::Print("Passed marker 2"));
-
-  
     // Configure the AutoBuilder last
     
 }
@@ -50,9 +44,10 @@ void RobotContainer::ConfigureButtonBindings() {
 
 
   //register Autons on PathPlanner
-  exampleAuto = PathPlannerAuto("Example Auto").ToPtr().Unwrap();
+  //exampleAuto = PathPlannerAuto("Example Auto").ToPtr().Unwrap();
+  m_chooser.SetDefaultOption("Slow Auto", &m_slowauto);
   //pieceAuto = PathPlannerAuto("pieceAuto").ToPtr().Unwrap();
-  m_chooser.SetDefaultOption("Example Auto", exampleAuto.get());
+  //m_chooser.SetDefaultOption("Example Auto", exampleAuto.get());
   //m_chooser.AddOption("pieceAuto",pieceAuto.get());
   frc::Shuffleboard::GetTab("Autonomous").Add(m_chooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
 
@@ -60,8 +55,7 @@ void RobotContainer::ConfigureButtonBindings() {
 
 }
 
-frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
+frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
-  //return m_chooser.GetSelected();
-  return PathPlannerAuto("Example Auto").ToPtr();
+  return m_chooser.GetSelected();
 }

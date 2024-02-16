@@ -27,20 +27,6 @@ Drivetrain::Drivetrain() {
     rightSpark1.SetInverted(1); 
     rightSpark2.SetInverted(1);// inverts the right drive motors
     resetGyro();
-
-
-    AutoBuilder::configureRamsete(
-    [this]() -> frc::Pose2d { return getPose(); },              // Lambda for Robot pose supplier
-    [this](frc::Pose2d pose) { resetPose(pose); },              // Lambda for resetting odometry
-    [this]() -> frc::ChassisSpeeds { return getRobotRelativeSpeeds(); },  // Lambda for ChassisSpeeds supplier (MUST BE ROBOT RELATIVE)
-    [this](frc::ChassisSpeeds speeds) { driveRobotRelative(speeds); },   // Lambda for driving the robot given ROBOT RELATIVE ChassisSpeeds
-    ReplanningConfig(),                                         // Default path replanning config
-    [this]() -> bool { /* Implement shouldFlipPath logic here */ return true; },  // Lambda for shouldFlipPath
-    this                                                        // Reference to this subsystem to set requirements
-);
-
-
-    
 }
 
 void Drivetrain::setDriveMotors(double left, double right) {
@@ -90,6 +76,39 @@ frc::Rotation2d Drivetrain::getPitch() {
     return frc::Rotation2d(deg);
 }
 
+
+
+
+double Drivetrain::getPitchAsAngle() {
+    return getPitch().Degrees().value();
+}
+
+
+
+void Drivetrain::resetEncoders() {
+    rightSpark2.SetPosition(0.0);
+    leftSpark2.SetPosition(0.0);
+}
+
+double Drivetrain::getLeftEncoderDistance() {
+    return leftSpark2.GetPosition();
+}
+
+double Drivetrain::getRightEncoderDistance() {
+    return rightSpark2.GetPosition();
+}
+
+double Drivetrain::venomTicksToInches(double revolutions) {
+    return M_PI * drivetrain::wheelDiameter * revolutions / 10.71;
+}
+
+void Drivetrain::resetGyro() {
+    gyro.Reset();
+}
+
+
+/*
+
 frc::Pose2d Drivetrain::getPose(){
     units::meter_t posX{gyro.GetDisplacementX()};
     units::meter_t posY{gyro.GetDisplacementY()};
@@ -124,34 +143,7 @@ frc::DifferentialDriveWheelSpeeds Drivetrain::driveRobotRelative(frc::ChassisSpe
 
 }
 
-
-
-double Drivetrain::getPitchAsAngle() {
-    return getPitch().Degrees().value();
-}
-
-
-
-void Drivetrain::resetEncoders() {
-    leftEncoder.SetPosition(0.0);
-    rightEncoder.SetPosition(0.0);
-}
-
-double Drivetrain::getLeftEncoderDistance() {
-    return leftEncoder.GetPosition();
-}
-
-double Drivetrain::getRightEncoderDistance() {
-    return rightEncoder.GetPosition();
-}
-
-double Drivetrain::neoTicksToInches(double revolutions) {
-    return M_PI * drivetrain::wheelDiameter * revolutions / 10.71;
-}
-
-void Drivetrain::resetGyro() {
-    gyro.Reset();
-}
+*/
 
 
 // This method will be called once per scheduler run

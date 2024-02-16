@@ -70,17 +70,17 @@ class Drivetrain : public frc2::SubsystemBase {
 
   double getRightEncoderDistance();
 
-  double neoTicksToInches(double);
+  double venomTicksToInches(double);
 
   void resetGyro();
   
-  frc::Pose2d getPose();
+  //frc::Pose2d getPose();
 
-  frc::Pose2d resetPose(frc::Pose2d);
+  //frc::Pose2d resetPose(frc::Pose2d);
 
-  frc::ChassisSpeeds getRobotRelativeSpeeds();
+  //frc::ChassisSpeeds getRobotRelativeSpeeds();
 
-  frc::DifferentialDriveWheelSpeeds driveRobotRelative(frc::ChassisSpeeds);
+  //frc::DifferentialDriveWheelSpeeds driveRobotRelative(frc::ChassisSpeeds);
 
 
 
@@ -91,25 +91,25 @@ class Drivetrain : public frc2::SubsystemBase {
 
  private:
 
-  //ctre::phoenix::motorcontrol::can::WPI_VictorSPX leftSpark1{drivetrain::kLeftDriveSparkPort1};
-  //frc::CANVenom leftSpark2{drivetrain::kLeftDriveSparkPort2};
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX leftSpark1{drivetrain::kLeftDriveSparkPort1};
+  frc::CANVenom leftSpark2{drivetrain::kLeftDriveSparkPort2};
 
-  rev::CANSparkMax leftSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining left side spark motor 1
-  rev::CANSparkMax leftSpark2{drivetrain::kLeftDriveSparkPort2, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining left side spark motor 2
+  //rev::CANSparkMax leftSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining left side spark motor 1
+  //rev::CANSparkMax leftSpark2{drivetrain::kLeftDriveSparkPort2, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining left side spark motor 2
 
-  //ctre::phoenix::motorcontrol::can::WPI_VictorSPX rightSpark1{drivetrain::kLeftDriveSparkPort1};
-  //frc::CANVenom rightSpark2{drivetrain::kRightDriveSparkPort2};
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX rightSpark1{drivetrain::kRightDriveSparkPort1};
+  frc::CANVenom rightSpark2{drivetrain::kRightDriveSparkPort2};
 
-  rev::CANSparkMax rightSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining right side motor 1
-  rev::CANSparkMax rightSpark2{drivetrain::kLeftDriveSparkPort2, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining right side motor 2
+  //rev::CANSparkMax rightSpark1{drivetrain::kLeftDriveSparkPort1, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining right side motor 1
+  //rev::CANSparkMax rightSpark2{drivetrain::kLeftDriveSparkPort2, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining right side motor 2
 
 
   //frc::MotorControllerGroup::MotorControllerGroup leftMotors{rightSpark1, leftSpark1}; // assigning left side motors into one group
   //frc::MotorControllerGroup::MotorControllerGroup rightMotors{rightSpark2, leftSpark2}; // assigning right side motors into one group
   
 
-  rev::SparkRelativeEncoder leftEncoder = leftSpark1.GetEncoder(rev::SparkRelativeEncoder::Type::kQuadrature, 4096);
-  rev::SparkRelativeEncoder rightEncoder = rightSpark1.GetEncoder(rev::SparkRelativeEncoder::Type::kQuadrature, 4096);
+  //rev::SparkRelativeEncoder leftEncoder = leftSpark1.GetEncoder(rev::SparkRelativeEncoder::Type::kQuadrature, 4096);
+  //rev::SparkRelativeEncoder rightEncoder = rightSpark1.GetEncoder(rev::SparkRelativeEncoder::Type::kQuadrature, 4096);
   //frc::DifferentialDrive drive{leftMotors, rightMotors};
 
   AHRS gyro{frc::SPI::Port::kMXP};
