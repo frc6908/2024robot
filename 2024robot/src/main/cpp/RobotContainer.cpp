@@ -46,6 +46,7 @@ void RobotContainer::ConfigureButtonBindings() {
   //register Autons on PathPlanner
   //exampleAuto = PathPlannerAuto("Example Auto").ToPtr().Unwrap();
   m_chooser.SetDefaultOption("Slow Auto", &m_slowauto);
+  m_chooser.AddOption("Two Piece Auto- Center", &m_twopiece);
   //pieceAuto = PathPlannerAuto("pieceAuto").ToPtr().Unwrap();
   //m_chooser.SetDefaultOption("Example Auto", exampleAuto.get());
   //m_chooser.AddOption("pieceAuto",pieceAuto.get());
