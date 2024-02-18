@@ -17,6 +17,7 @@
 #include <frc/geometry/Translation2d.h>
 #include <frc/kinematics/ChassisSpeeds.h>
 #include <frc/kinematics/DifferentialDriveKinematics.h>
+#include <frc/DriverStation.h>
 
 #include <units/velocity.h>
 
@@ -27,6 +28,27 @@ Drivetrain::Drivetrain() {
     rightSpark1.SetInverted(1); 
     rightSpark2.SetInverted(1);// inverts the right drive motors
     resetGyro();
+
+    AutoBuilder::configureRamsete(
+    [this]() -> frc::Pose2d { return getPose(); },              // Lambda for Robot pose supplier
+    [this](frc::Pose2d pose) { resetPose(pose); },              // Lambda for resetting odometry
+    [this]() -> frc::ChassisSpeeds { return getRobotRelativeSpeeds(); },  // Lambda for ChassisSpeeds supplier (MUST BE ROBOT RELATIVE)
+    [this](frc::ChassisSpeeds speeds) { driveRobotRelative(speeds); },   // Lambda for driving the robot given ROBOT RELATIVE ChassisSpeeds
+    ReplanningConfig(),                                         // Default path replanning config
+        []() {
+            // Boolean supplier that controls when the path will be mirrored for the red alliance
+            // This will flip the path being followed to the red side of the field.
+            // THE ORIGIN WILL REMAIN ON THE BLUE SIDE
+
+            auto alliance = frc::DriverStation::GetAlliance();
+            if (alliance) {
+                return alliance.value() == frc::DriverStation::Alliance::kRed;
+            }
+            return false;
+        },
+    this    
+                                                    // Reference to this subsystem to set requirements
+);
 }
 
 void Drivetrain::setDriveMotors(double left, double right) {
@@ -77,8 +99,6 @@ frc::Rotation2d Drivetrain::getPitch() {
 }
 
 
-
-
 double Drivetrain::getPitchAsAngle() {
     return getPitch().Degrees().value();
 }
@@ -106,19 +126,14 @@ void Drivetrain::resetGyro() {
     gyro.Reset();
 }
 
-
-/*
-
 frc::Pose2d Drivetrain::getPose(){
-    units::meter_t posX{gyro.GetDisplacementX()};
-    units::meter_t posY{gyro.GetDisplacementY()};
-    units::degree_t deg{gyro.GetPitch()};
-    return frc::Pose2d(posX, posY, deg);
+    return m_odometry.GetPose();
 }
 
 
-frc::Pose2d Drivetrain::resetPose(frc::Pose2d pose){
-    return frc::Pose2d();
+void Drivetrain::resetPose(frc::Pose2d pose){
+    m_odometry.ResetPosition(gyro.GetRotation2d(), units::length::meter_t(0.0), units::length::meter_t(0.0), 
+    m_pose);
 }
 
 frc::ChassisSpeeds Drivetrain::getRobotRelativeSpeeds(){
@@ -131,19 +146,20 @@ frc::ChassisSpeeds Drivetrain::getRobotRelativeSpeeds(){
     return frc::ChassisSpeeds(speeds);
 }
 
-frc::DifferentialDriveWheelSpeeds Drivetrain::driveRobotRelative(frc::ChassisSpeeds speeds){
-    // Creating my kinematics object: track width of 23 inches (Calculated from Robot CAD)
-    frc::DifferentialDriveKinematics kinematics{23_in};
+void Drivetrain::driveRobotRelative(frc::ChassisSpeeds speeds){
+    frc::DifferentialDriveKinematics kinematics{23_in}; //Change for KOP
 
 // Convert to wheel speeds. Here, we can use C++17's structured bindings
 // feature to automatically split the DifferentialDriveWheelSpeeds
 // struct into left and right velocities.
     auto [left,right] = kinematics.ToWheelSpeeds(speeds);
-    return frc::DifferentialDriveWheelSpeeds(left, right);
 
+    rightSpark1.Set(double(right));
+    rightSpark2.Set(double(right));
+    leftSpark1.Set(double(left));
+    leftSpark2.Set(double(left));
 }
 
-*/
 
 
 // This method will be called once per scheduler run
