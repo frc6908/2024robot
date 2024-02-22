@@ -8,7 +8,22 @@
 #include "networktables/NetworkTableEntry.h"
 #include "networktables/NetworkTableValue.h"
 
+#include <pathplanner/lib/auto/AutoBuilder.h>
+#include <pathplanner/lib/util/HolonomicPathFollowerConfig.h>
+#include <pathplanner/lib/util/PIDConstants.h>
+#include <pathplanner/lib/util/ReplanningConfig.h>
+#include <frc/geometry/Pose2d.h>
+#include <frc/geometry/Rotation2d.h>
+#include <frc/geometry/Translation2d.h>
+#include <frc/kinematics/ChassisSpeeds.h>
+#include <frc/kinematics/DifferentialDriveKinematics.h>
+
+#include <units/velocity.h>
+
+
+using namespace pathplanner;
 Drivetrain::Drivetrain() {
+    
     rightSpark1.SetInverted(1); 
     rightSpark2.SetInverted(1);// inverts the right drive motors
     resetGyro();
@@ -66,24 +81,66 @@ double Drivetrain::getPitchAsAngle() {
 }
 
 void Drivetrain::resetEncoders() {
-    leftEncoder.SetPosition(0.0);
-    rightEncoder.SetPosition(0.0);
+    rightSpark2.SetPosition(0.0);
+    leftSpark2.SetPosition(0.0);
 }
 
 double Drivetrain::getLeftEncoderDistance() {
-    return leftEncoder.GetPosition();
+    return leftSpark2.GetPosition();
 }
 
 double Drivetrain::getRightEncoderDistance() {
-    return rightEncoder.GetPosition();
+    return rightSpark2.GetPosition();
 }
 
-double Drivetrain::neoTicksToInches(double revolutions) {
+double Drivetrain::venomTicksToInches(double revolutions) {
     return M_PI * drivetrain::wheelDiameter * revolutions / 10.71;
 }
 
 void Drivetrain::resetGyro() {
     gyro.Reset();
 }
+
+
+/*
+
+frc::Pose2d Drivetrain::getPose(){
+    units::meter_t posX{gyro.GetDisplacementX()};
+    units::meter_t posY{gyro.GetDisplacementY()};
+    units::degree_t deg{gyro.GetPitch()};
+    return frc::Pose2d(posX, posY, deg);
+}
+
+
+frc::Pose2d Drivetrain::resetPose(frc::Pose2d pose){
+    return frc::Pose2d();
+}
+
+frc::ChassisSpeeds Drivetrain::getRobotRelativeSpeeds(){
+
+    units::meters_per_second_t speedX{gyro.GetVelocityX()};
+    units::meters_per_second_t speedY{gyro.GetVelocityY()};
+
+    frc::ChassisSpeeds speeds{speedX, -speedY,
+    units::radians_per_second_t(std::numbers::pi)};
+    return frc::ChassisSpeeds(speeds);
+}
+
+frc::DifferentialDriveWheelSpeeds Drivetrain::driveRobotRelative(frc::ChassisSpeeds speeds){
+    // Creating my kinematics object: track width of 23 inches (Calculated from Robot CAD)
+    frc::DifferentialDriveKinematics kinematics{23_in};
+
+// Convert to wheel speeds. Here, we can use C++17's structured bindings
+// feature to automatically split the DifferentialDriveWheelSpeeds
+// struct into left and right velocities.
+    auto [left,right] = kinematics.ToWheelSpeeds(speeds);
+    return frc::DifferentialDriveWheelSpeeds(left, right);
+
+}
+
+*/
+
+
 // This method will be called once per scheduler run
 void Drivetrain::Periodic() {}
+
