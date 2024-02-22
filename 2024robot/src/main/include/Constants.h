@@ -34,10 +34,18 @@ namespace arm {
     // THESE VALUES ARE WRONG!!!!
 }
 
+namespace intake {
+    const int kIntakeTalonPort = 1; // change later
+}
+
 namespace oi {
     const int kDriveJoystickPort = 0;   // drive joystick
     // const int kArmJoystickPort = 1; // elbow joystick
 }
 
+namespace shooter {
+    const int kShooterSparkPort1 = 1; //change later
+    const int kShooterSparkPort2 = 2; // change later
+}
 
 
