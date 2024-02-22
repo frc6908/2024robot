@@ -76,14 +76,9 @@ frc::Rotation2d Drivetrain::getPitch() {
     return frc::Rotation2d(deg);
 }
 
-
-
-
 double Drivetrain::getPitchAsAngle() {
     return getPitch().Degrees().value();
 }
-
-
 
 void Drivetrain::resetEncoders() {
     rightSpark2.SetPosition(0.0);
