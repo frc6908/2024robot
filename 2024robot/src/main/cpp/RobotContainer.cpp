@@ -3,12 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "RobotContainer.h"
-#include <pathplanner/lib/auto/NamedCommands.h>
-#include <pathplanner/lib/auto/AutoBuilder.h>
-#include <pathplanner/lib/commands/PathPlannerAuto.h>
-#include <pathplanner/lib/util/ReplanningConfig.h>
-#include <frc/geometry/Pose2d.h>
-#include <frc/kinematics/ChassisSpeeds.h>
 #include <iostream>
 
 
@@ -16,7 +10,6 @@
 
 #include <memory>
 
-using namespace pathplanner;
 
 
 RobotContainer::RobotContainer() : m_drivetrain(){
@@ -32,14 +25,6 @@ RobotContainer::RobotContainer() : m_drivetrain(){
   m_drivetrain.SetDefaultCommand(ArcadeDrive(&m_drivetrain, [this] { return -m_joystick.GetY(); }, [this] { return m_joystick.GetX(); }, [this] { return m_joystick.GetThrottle(); }));
   // Configure the button bindings
   
-
-  //pathplannertest
-  NamedCommands::registerCommand("marker1", frc2::cmd::Print("Passed marker 1"));
-  NamedCommands::registerCommand("marker2", frc2::cmd::Print("Passed marker 2"));
-
-  
-    // Configure the AutoBuilder last
-    
 }
 
 void RobotContainer::ConfigureButtonBindings() {
@@ -49,19 +34,15 @@ void RobotContainer::ConfigureButtonBindings() {
 
 
 
-  //register Autons on PathPlanner
-  exampleAuto = PathPlannerAuto("Example Auto").ToPtr().Unwrap();
-  //pieceAuto = PathPlannerAuto("pieceAuto").ToPtr().Unwrap();
-  m_chooser.SetDefaultOption("Example Auto", exampleAuto.get());
-  //m_chooser.AddOption("pieceAuto",pieceAuto.get());
+
+  m_chooser.SetDefaultOption("Slow Auto", &m_slowauto);
   frc::Shuffleboard::GetTab("Autonomous").Add(m_chooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
 
   
 
 }
 
-frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
+frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
-  //return m_chooser.GetSelected();
-  return PathPlannerAuto("Example Auto").ToPtr();
+  return m_chooser.GetSelected();
 }
