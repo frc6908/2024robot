@@ -16,8 +16,8 @@
 
 
 #include "subsystems/Drivetrain.h"
+#include "subsystems/Arm.h"
 
-#include "commands/TwoPiece.h"
 #include "commands/SlowAuto.h"
 #include "commands/ArcadeDrive.h"
 #include "commands/FlipDrivetrain.h"
@@ -42,6 +42,7 @@ class RobotContainer {
   //drivetrain
   Drivetrain m_drivetrain;
 
+  Arm m_arm;
   //
 
    // chooser for autonomous routines

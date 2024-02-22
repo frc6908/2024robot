@@ -28,6 +28,12 @@ namespace drivetrain {
 
 }
 
+namespace arm {
+    const int kArmSparkPort1 = 3;
+    const int kArmSparkPort2 = 4;
+    // THESE VALUES ARE WRONG!!!!
+}
+
 namespace oi {
     const int kDriveJoystickPort = 0;   // drive joystick
     // const int kArmJoystickPort = 1; // elbow joystick
