@@ -15,7 +15,8 @@ void SlowAuto::Initialize() {
 
 void SlowAuto::Execute() {
     if(t <= 100) {
-        this->m_drivetrain->setDriveMotors(-0.4, -0.4);
+        this->m_shooter->setShooterMotors(1.0,1.0);
+        this->m_drivetrain->setDriveMotors(0.4, 0.4);
     }
     else {
         this->m_drivetrain->setDriveMotors(0, 0);
@@ -25,12 +26,6 @@ void SlowAuto::Execute() {
 
 void SlowAuto::End(bool interrupted) {
     this->m_drivetrain->stop();
-    /*
-    this->m_shooter->setTopMotorVoltage(stopVoltage);
-    this->m_shooter->setBottomMotorVoltage(stopVoltage);
-    this->m_uptake->setTopFeederMotor(0);
-    this->m_uptake->setUptakeMotor(0);
-    */
 }
 
 bool SlowAuto::IsFinished() {

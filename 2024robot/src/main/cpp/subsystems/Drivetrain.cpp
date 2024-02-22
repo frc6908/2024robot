@@ -66,16 +66,16 @@ double Drivetrain::getPitchAsAngle() {
 }
 
 void Drivetrain::resetEncoders() {
-    leftEncoder.SetPosition(0.0);
-    rightEncoder.SetPosition(0.0);
+    rightSpark2.SetPosition(0.0);
+    leftSpark2.SetPosition(0.0);
 }
 
 double Drivetrain::getLeftEncoderDistance() {
-    return leftEncoder.GetPosition();
+    return leftSpark2.GetPosition();
 }
 
 double Drivetrain::getRightEncoderDistance() {
-    return rightEncoder.GetPosition();
+    return rightSpark2.GetPosition();
 }
 
 double Drivetrain::neoTicksToInches(double revolutions) {

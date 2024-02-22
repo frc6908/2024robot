@@ -16,11 +16,12 @@
 
 
 #include "subsystems/Drivetrain.h"
-
+#include "subsystems/Shooter.h"
 
 #include "commands/SlowAuto.h"
 #include "commands/ArcadeDrive.h"
 #include "commands/FlipDrivetrain.h"
+#include "commands/ShootNote.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -32,7 +33,7 @@
 class RobotContainer {
  public:
   RobotContainer();
-  frc2::CommandPtr GetAutonomousCommand();
+  frc2::Command* GetAutonomousCommand();
 
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -42,6 +43,8 @@ class RobotContainer {
   //drivetrain
   Drivetrain m_drivetrain;
 
+  Shooter m_shooter;
+
   //
 
    // chooser for autonomous routines
@@ -50,8 +53,10 @@ class RobotContainer {
 
   //joystick
   frc::Joystick m_joystick{oi::kDriveJoystickPort};
-  // frc::Joystick m_joystickArm{oi::kArmJoystickPort};
+  frc::Joystick m_joystickArm{oi::kArmJoystickPort};
 
 
   void ConfigureButtonBindings();
+
+  
 };

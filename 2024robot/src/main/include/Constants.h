@@ -34,7 +34,7 @@ namespace intake {
 
 namespace oi {
     const int kDriveJoystickPort = 0;   // drive joystick
-    // const int kArmJoystickPort = 1; // elbow joystick
+    const int kArmJoystickPort = 1; // elbow joystick
 }
 
 namespace shooter {

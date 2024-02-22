@@ -8,6 +8,7 @@
 #include <frc2/command/CommandHelper.h>
 
 #include "subsystems/Drivetrain.h"
+#include "subsystems/Shooter.h"
 
 /**
  * An example command that uses an example subsystem.
@@ -31,4 +32,5 @@ class SlowAuto : public frc2::CommandHelper<frc2::Command, SlowAuto> {
   private:
     int t;
     Drivetrain* m_drivetrain;
+    Shooter* m_shooter;
 };
