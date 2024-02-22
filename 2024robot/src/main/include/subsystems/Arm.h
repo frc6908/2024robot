@@ -16,6 +16,8 @@
 #include <rev/CANSparkBase.h>
 #include <rev/SparkRelativeEncoder.h>
 #include <frc/motorcontrol/MotorControllerGroup.h>
+#include <frc/controller/PIDController.h>
+#include <frc/Encoder.h>
 
 #include <frc/geometry/Rotation2d.h>
 
@@ -32,6 +34,14 @@ class Arm : public frc2::SubsystemBase {
 
   void setArmMotors(double);
 
+  void resetEncoder();
+
+  double getEncoderDist();
+
+  double PIDCalculate(double);
+
+  bool PIDfinished(); 
+
   void stop();
 
   /**
@@ -45,5 +55,8 @@ class Arm : public frc2::SubsystemBase {
   rev::CANSparkMax armSpark2{arm::kArmSparkPort2, rev::CANSparkLowLevel::MotorType::kBrushless}; // defining left side spark motor 2
 
   frc::ShuffleboardTab& tab = frc::Shuffleboard::GetTab("Test");
+  
+  frc::Encoder encoder{0, 1}; // change values for this, but prolly should work anyways
+  frc::PIDController pid{1, 0, 0};
   
 };
