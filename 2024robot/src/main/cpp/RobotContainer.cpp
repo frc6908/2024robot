@@ -41,15 +41,31 @@ void RobotContainer::ConfigureButtonBindings() {
   frc2::JoystickButton flip(&m_joystick, 8);
   flip.OnTrue(new FlipDrivetrain(&m_drivetrain));
 
+  frc2::JoystickButton Intake(&m_joystick, 1);
+  Intake.WhileTrue(new IntakeNote(&m_intake));
+
+  frc2::JoystickButton Shooter(&m_joystick, 2);
+  Shooter.WhileTrue(new IntakeNote(&m_intake));
+  Shooter.WhileTrue(new ShootNote(&m_shooter));
+
+
+
+
+  //Arm
+  frc2::JoystickButton Intake(&m_joystickArm, 1);
+  Intake.WhileTrue(new IntakeNote(&m_intake));
+
+  frc2::JoystickButton Shooter(&m_joystickArm, 2);
+  Shooter.WhileTrue(new IntakeNote(&m_intake));
+  Shooter.WhileTrue(new ShootNote(&m_shooter));
+
 
 
   //register Autons on PathPlanner
   //exampleAuto = PathPlannerAuto("Example Auto").ToPtr().Unwrap();
   m_chooser.SetDefaultOption("Slow Auto", &m_slowauto);
   m_chooser.AddOption("Two Piece Auto- Center", &m_twopiece);
-  //pieceAuto = PathPlannerAuto("pieceAuto").ToPtr().Unwrap();
-  //m_chooser.SetDefaultOption("Example Auto", exampleAuto.get());
-  //m_chooser.AddOption("pieceAuto",pieceAuto.get());
+
   frc::Shuffleboard::GetTab("Autonomous").Add(m_chooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
 
   

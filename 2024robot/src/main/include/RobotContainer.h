@@ -17,10 +17,19 @@
 
 #include "subsystems/Drivetrain.h"
 #include "subsystems/Arm.h"
+#include "subsystems/Intake.h"
+#include "subsystems/Shooter.h"
+
 
 #include "commands/SlowAuto.h"
+#include "commands/TwoPiece.h"
 #include "commands/ArcadeDrive.h"
 #include "commands/FlipDrivetrain.h"
+#include "commands/IntakeNote.h"
+#include "commands/MoveArm.h"
+#include "commands/MoveArmAngle.h"
+#include "commands/ResetArmEncoder.h"
+#include "commands/ShootNote.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -43,18 +52,20 @@ class RobotContainer {
   Drivetrain m_drivetrain;
 
   Arm m_arm;
+
+  Shooter m_shooter;
+
+  Intake m_intake;
   //
 
    // chooser for autonomous routines
   frc::SendableChooser<frc2::Command*> m_chooser;
   SlowAuto m_slowauto{&m_drivetrain};
   TwoPiece m_twopiece{&m_drivetrain};
-  //std::unique_ptr<frc2::Command> exampleAuto;
-  //std::unique_ptr<frc2::Command> pieceAuto;
-
+  
   //joystick
   frc::Joystick m_joystick{oi::kDriveJoystickPort};
-  // frc::Joystick m_joystickArm{oi::kArmJoystickPort};
+  frc::Joystick m_joystickArm{oi::kArmJoystickPort};
 
 
   void ConfigureButtonBindings();
