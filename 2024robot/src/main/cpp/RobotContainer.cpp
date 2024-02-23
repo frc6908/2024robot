@@ -31,8 +31,7 @@ RobotContainer::RobotContainer() : m_drivetrain(){
   // need lambda function to capture the value of the double function for continuous data getting 
   m_drivetrain.SetDefaultCommand(ArcadeDrive(&m_drivetrain, [this] { return -m_joystick.GetY(); }, [this] { return m_joystick.GetX(); }, [this] { return m_joystick.GetThrottle(); }));
   // Configure the button bindings
-  
-    // Configure the AutoBuilder last
+
     
 }
 
@@ -41,30 +40,30 @@ void RobotContainer::ConfigureButtonBindings() {
   frc2::JoystickButton flip(&m_joystick, 8);
   flip.OnTrue(new FlipDrivetrain(&m_drivetrain));
 
-  frc2::JoystickButton Intake(&m_joystick, 1);
+  //Intake
+  frc2::JoystickButton Intake(&m_joystick, 3);
   Intake.WhileTrue(new IntakeNote(&m_intake));
 
-  frc2::JoystickButton Shooter(&m_joystick, 2);
+  //Shooter
+  frc2::JoystickButton Shooter(&m_joystick, 4);
   Shooter.WhileTrue(new IntakeNote(&m_intake));
   Shooter.WhileTrue(new ShootNote(&m_shooter));
 
 
-
-
-  //Arm
-  frc2::JoystickButton Intake(&m_joystickArm, 1);
-  Intake.WhileTrue(new IntakeNote(&m_intake));
-
-  frc2::JoystickButton Shooter(&m_joystickArm, 2);
-  Shooter.WhileTrue(new IntakeNote(&m_intake));
-  Shooter.WhileTrue(new ShootNote(&m_shooter));
+  //Arm Manual
+  frc2::JoystickButton armUp(&m_joystick, 5);
+  armUp.WhileTrue(new MoveArm(&m_arm, true, m_joystickArm.GetThrottle())); 
+  frc2::JoystickButton armDown(&m_joystick, 6);
+  armDown.WhileTrue(new MoveArm(&m_arm, true, m_joystickArm.GetThrottle()));
 
 
 
-  //register Autons on PathPlanner
-  //exampleAuto = PathPlannerAuto("Example Auto").ToPtr().Unwrap();
   m_chooser.SetDefaultOption("Slow Auto", &m_slowauto);
+  m_chooser.AddOption("Preloaded Mobility", &m_preloaded);
   m_chooser.AddOption("Two Piece Auto- Center", &m_twopiece);
+  m_chooser.AddOption("Amp Auton", &m_ampauto);
+  m_chooser.AddOption("Two Piece Auto- Right", &m_twopieceR);
+  m_chooser.AddOption("Three Piece Auto- Center", &m_threepiece);
 
   frc::Shuffleboard::GetTab("Autonomous").Add(m_chooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
 

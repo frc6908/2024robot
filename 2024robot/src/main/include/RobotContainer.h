@@ -23,6 +23,12 @@
 
 #include "commands/SlowAuto.h"
 #include "commands/TwoPiece.h"
+#include "commands/Preloaded.h"
+#include "commands/AmpAuto.h"
+#include "commands/TwoPieceR.h"
+#include "commands/ThreePiece.h"
+
+
 #include "commands/ArcadeDrive.h"
 #include "commands/FlipDrivetrain.h"
 #include "commands/IntakeNote.h"
@@ -62,6 +68,12 @@ class RobotContainer {
   frc::SendableChooser<frc2::Command*> m_chooser;
   SlowAuto m_slowauto{&m_drivetrain};
   TwoPiece m_twopiece{&m_drivetrain};
+  Preloaded m_preloaded{&m_drivetrain};
+  AmpAuto m_ampauto{&m_drivetrain};
+  TwoPieceR m_twopieceR{&m_drivetrain};
+  ThreePiece m_threepiece{&m_drivetrain};
+  
+
   
   //joystick
   frc::Joystick m_joystick{oi::kDriveJoystickPort};
