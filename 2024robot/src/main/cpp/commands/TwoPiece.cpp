@@ -11,38 +11,44 @@ TwoPiece::TwoPiece(Drivetrain* drivetrain, Shooter* shooter, Arm* arm, Intake* i
     AddRequirements(intake);
 }
 
-
 void TwoPiece::Initialize() {
     t = 0;
     this->m_drivetrain->stop();
-    //this->m_shooter->setShooterMotors(1,1); (UNTESTED)
 }
 
 void TwoPiece::Execute() {
-    if(t <= 20) {
-        this->m_drivetrain->setDriveMotors(0.8, 0.8);
-        this->m_shooter->setShooterMotors(1,1);
-        this->m_arm->setArmMotors(-0.5);
-        this->m_intake->setIntakeMotor(1);
+    if(t <= 200) {
+        
+        this->m_shooter->setShooterMotors(1, 1);
+        if(t > 100){
+             this->m_intake->stop();;
+        }
+        else{
+            this->m_intake->setIntakeMotor(1);
+        }
+       
     }
-    else if(t > 20 && t < 40) {
-        this->m_drivetrain->setDriveMotors(-0.8, -0.8);
+    else if(t>200 && t<= 500){
+        this->m_drivetrain->setDriveMotors(0.4, 0.4);
+        this->m_shooter->stop();
         this->m_intake->setIntakeMotor(1);
-    }
-    else if(t >= 40 && t< 45){
-        this-> m_drivetrain-> stop();
-        this->m_arm->stop();
-        this-> m_shooter->setShooterMotors(1,1); 
+
+       /* 
+        if(t>100 && t<= 200){
+            //this->m_arm->setArmMotors(1);
+        }
+
+        else{
+            this->m_arm->stop();
+        }
+        */
     }
 
-    else if (t>=45 && t< 100){
-        this-> m_drivetrain-> setDriveMotors(0.4,0.45);
-        this-> m_shooter->stop();
-        this->m_arm->setArmMotors(.2);
+    else(t>500){
+        this->m_intake->setIntakeMotors(1);
     }
-    else {
-        this->m_drivetrain->stop();
-    }
+
+    
     t++;
 }
 

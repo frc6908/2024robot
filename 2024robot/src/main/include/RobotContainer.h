@@ -40,6 +40,7 @@
 #include "commands/AlignArm.h"
 #include "commands/AlignDrivetrain.h"
 #include "commands/SendNote.h"
+#include "commands/OuttakeNote.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since

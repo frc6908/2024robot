@@ -46,7 +46,7 @@ void RobotContainer::ConfigureButtonBindings() {
 
   //Outtake
   frc2::JoystickButton Outtake(&m_joystick, 2);
-  Outtake.WhileTrue(new IntakeNote(&m_intake));
+  Outtake.WhileTrue(new OuttakeNote(&m_intake));
 
   //Shooter
   frc2::JoystickButton Shooter(&m_joystickArm, 1);
