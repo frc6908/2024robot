@@ -44,8 +44,8 @@ void TwoPiece::Execute() {
         */
     }
 
-    else(t>500){
-        this->m_intake->setIntakeMotors(1);
+    else{
+        this->m_intake->setIntakeMotor(1);
     }
 
     
