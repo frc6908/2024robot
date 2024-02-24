@@ -72,6 +72,8 @@ class Drivetrain : public frc2::SubsystemBase {
 
   double venomTicksToInches(double);
 
+  bool isFlipped();
+
   void resetGyro();
   
 

@@ -97,6 +97,10 @@ double Drivetrain::venomTicksToInches(double revolutions) {
     return M_PI * drivetrain::wheelDiameter * revolutions / 10.71;
 }
 
+bool Drivetrain::isFlipped() {
+    return flipped;
+}
+
 void Drivetrain::resetGyro() {
     gyro.Reset();
 }
