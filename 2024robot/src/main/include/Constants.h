@@ -29,13 +29,12 @@ namespace drivetrain {
 }
 
 namespace arm {
-    const int kArmSparkPort1 = 3;
-    const int kArmSparkPort2 = 4;
-    // THESE VALUES ARE WRONG!!!!
+    const int kArmSparkPort1 = 2;
+    const int kArmSparkPort2 = 3;
 }
 
 namespace intake {
-    const int kIntakeTalonPort = 1; // change later
+    const int kIntakeTalonPort = 10;
 }
 
 namespace oi {
@@ -44,8 +43,8 @@ namespace oi {
 }
 
 namespace shooter {
-    const int kShooterSparkPort1 = 1; //change later
-    const int kShooterSparkPort2 = 2; // change later
+    const int kShooterSparkPort1 = 5;
+    const int kShooterSparkPort2 = 6;
 }
 
 

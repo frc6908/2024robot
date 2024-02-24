@@ -10,7 +10,7 @@
 
 #include <CANVenom.h>
 #include <ctre/phoenix6/TalonFX.hpp>
-//#include <ctre/phoenix6/VictorSFX.hpp>
+#include <ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h>
 #include <rev/CANSparkMax.h>
 #include <rev/CANSparkLowLevel.h>
 #include <rev/CANSparkBase.h>

@@ -9,7 +9,7 @@ Shooter::Shooter() {
 }
 
 void Shooter::setShooterMotors(double s1, double s2) {
-    shooterMotor1.Set(s1);
+    shooterMotor1.Set(-s1);
     shooterMotor2.Set(s2);
 }
 

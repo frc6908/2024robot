@@ -14,7 +14,7 @@
 #include <rev/CANSparkLowLevel.h>
 #include <rev/CANSparkBase.h>
 #include <rev/SparkRelativeEncoder.h>
-#include "rev/Rev2mDistanceSensor.h"
+//#include "rev/Rev2mDistanceSensor.h"
 
 #include <frc/motorcontrol/MotorControllerGroup.h>
 

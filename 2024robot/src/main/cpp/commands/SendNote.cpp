@@ -9,7 +9,7 @@ void SendNote::Initialize() {
 }
 
 void SendNote::Execute() {
-    this->m_intake->setIntakeMotor(0.4);
+    this->m_intake->setIntakeMotor(0.5);
 }
 
 void SendNote::End(bool interrupted) {

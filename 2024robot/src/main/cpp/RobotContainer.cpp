@@ -41,28 +41,35 @@ void RobotContainer::ConfigureButtonBindings() {
   flip.OnTrue(new FlipDrivetrain(&m_drivetrain));
 
   //Intake
-  frc2::JoystickButton Intake(&m_joystick, 3);
+  frc2::JoystickButton Intake(&m_joystick, 1);
   Intake.WhileTrue(new IntakeNote(&m_intake));
 
+  //Outtake
+  frc2::JoystickButton Outtake(&m_joystick, 2);
+  Outtake.WhileTrue(new IntakeNote(&m_intake));
+
   //Shooter
-  frc2::JoystickButton Shooter(&m_joystick, 4);
+  frc2::JoystickButton Shooter(&m_joystickArm, 1);
   Shooter.WhileTrue(new ShootNote(&m_shooter));
-  frc2::JoystickButton sendNote(&m_joystick, 10);
-  sendNote.WhileTrue(new SendNote(&m_intake));
+  Shooter.WhileTrue(new IntakeNote(&m_intake));
+  
 
   //Arm Manual
-  frc2::JoystickButton armUp(&m_joystickArm, 5);
+  frc2::JoystickButton armUp(&m_joystickArm, 3);
   armUp.WhileTrue(new MoveArm(&m_arm, true, m_joystickArm.GetThrottle())); 
   frc2::JoystickButton armDown(&m_joystickArm, 6);
   armDown.WhileTrue(new MoveArm(&m_arm, true, m_joystickArm.GetThrottle()));
 
   // Alignment
+
+  /*
   frc2::JoystickButton alignArm(&m_joystick, 7);
   alignArm.WhileTrue(new AlignArm(&m_arm, &m_vision));
   frc2::JoystickButton alignDT(&m_joystick, 8);
   alignDT.WhileTrue(new AlignDrivetrain(&m_drivetrain, &m_vision));
-  frc2::JoystickButton alignAmp(&m_joystick, 9);
+  frc2::JoystickButton alignAmp(&m_joystick, 5);
   alignAmp.WhileTrue(new MoveArmAngle(&m_arm, 106));
+  */
 
 
 

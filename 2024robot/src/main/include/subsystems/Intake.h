@@ -9,12 +9,13 @@
 #include <frc2/command/SubsystemBase.h>
 
 #include <CANVenom.h>
+#include <ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h>
 
 #include <rev/CANSparkMax.h>
 #include <rev/CANSparkLowLevel.h>
 #include <rev/CANSparkBase.h>
 #include <rev/SparkRelativeEncoder.h>
-#include "rev/Rev2mDistanceSensor.h"
+//#include "rev/Rev2mDistanceSensor.h"
 
 #include <frc/motorcontrol/MotorControllerGroup.h>
 
@@ -44,6 +45,6 @@ class Intake : public frc2::SubsystemBase {
         void Periodic() override;
 
     private: 
-        ctre::phoenix::motorcontrol::can::WPI_TalonSRX IntakeMotor{intake::kIntakeTalonPort};
-        rev::Rev2mDistanceSensor distSensor{rev::Rev2mDistanceSensor::Port::kOnboard, rev::Rev2mDistanceSensor::DistanceUnit::kMilliMeters};
+        ctre::phoenix::motorcontrol::can::WPI_VictorSPX IntakeMotor{intake::kIntakeTalonPort};
+        //rev::Rev2mDistanceSensor distSensor{rev::Rev2mDistanceSensor::Port::kOnboard, rev::Rev2mDistanceSensor::DistanceUnit::kMilliMeters};
 };

@@ -11,7 +11,7 @@ Arm::Arm() {
 }
 
 void Arm::setArmMotors(double speed) {
-    armSpark1.Set(speed);
+    armSpark1.Set(-speed);
     armSpark2.Set(speed);
 }
 

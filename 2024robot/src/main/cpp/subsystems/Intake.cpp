@@ -14,9 +14,9 @@ void Intake::setIntakeMotor(double speed) {
 void Intake::stop() {
     IntakeMotor.Set(0);
 }
-
+/*
 double Intake::getDistance() {
     return distSensor.GetRange();
 }
-
+*/
 void Intake::Periodic() {}
