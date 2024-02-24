@@ -21,7 +21,7 @@
  */
 class TwoPiece : public frc2::CommandHelper<frc2::Command, TwoPiece> {
  public:
-  TwoPiece(Drivetrain*);
+  TwoPiece(Drivetrain*, Shooter*, Arm*, Intake*);
 
   void Initialize() override;
 
@@ -35,6 +35,6 @@ class TwoPiece : public frc2::CommandHelper<frc2::Command, TwoPiece> {
     int t;
     Drivetrain* m_drivetrain;
     Shooter* m_shooter;
-    Intake* m_intake;
     Arm* m_arm;
+    Intake* m_intake;
 };

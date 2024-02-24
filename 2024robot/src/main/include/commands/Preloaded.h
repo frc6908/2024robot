@@ -21,7 +21,7 @@
  */
 class Preloaded : public frc2::CommandHelper<frc2::Command, Preloaded> {
  public:
-  Preloaded(Drivetrain*);
+  Preloaded(Drivetrain*, Shooter*, Arm*, Intake*);
 
   void Initialize() override;
 

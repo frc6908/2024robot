@@ -35,3 +35,5 @@ void Arm::stop() {
     armSpark1.Set(0);
     armSpark2.Set(0);
 }
+
+void Arm::Periodic() {}

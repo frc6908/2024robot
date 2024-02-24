@@ -4,9 +4,13 @@
 
 #include "commands/TwoPiece.h"
 
-TwoPiece::TwoPiece(Drivetrain* drivetrain) : m_drivetrain{drivetrain} {
+TwoPiece::TwoPiece(Drivetrain* drivetrain, Shooter* shooter, Arm* arm, Intake* intake) : m_drivetrain{drivetrain}, m_shooter{shooter}, m_arm{arm}, m_intake{intake} {
     AddRequirements(drivetrain); 
+    AddRequirements(shooter);
+    AddRequirements(arm);
+    AddRequirements(intake);
 }
+
 
 void TwoPiece::Initialize() {
     t = 0;

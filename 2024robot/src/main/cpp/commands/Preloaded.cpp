@@ -4,10 +4,11 @@
 
 #include "commands/Preloaded.h"
 
-
-
-Preloaded::Preloaded(Drivetrain* drivetrain) : m_drivetrain{drivetrain} {
+Preloaded::Preloaded(Drivetrain* drivetrain, Shooter* shooter, Arm* arm, Intake* intake) : m_drivetrain{drivetrain}, m_shooter{shooter}, m_arm{arm}, m_intake{intake} {
     AddRequirements(drivetrain); 
+    AddRequirements(shooter);
+    AddRequirements(arm);
+    AddRequirements(intake);
 }
 
 void Preloaded::Initialize() {

@@ -67,8 +67,8 @@ class RobotContainer {
    // chooser for autonomous routines
   frc::SendableChooser<frc2::Command*> m_chooser;
   SlowAuto m_slowauto{&m_drivetrain};
-  TwoPiece m_twopiece{&m_drivetrain};
-  Preloaded m_preloaded{&m_drivetrain};
+  TwoPiece m_twopiece{&m_drivetrain, &m_shooter, &m_arm, &m_intake};
+  Preloaded m_preloaded{&m_drivetrain, &m_shooter, &m_arm, &m_intake};
   AmpAuto m_ampauto{&m_drivetrain};
   TwoPieceR m_twopieceR{&m_drivetrain};
   ThreePiece m_threepiece{&m_drivetrain};
