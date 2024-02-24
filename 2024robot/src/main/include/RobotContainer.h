@@ -19,6 +19,7 @@
 #include "subsystems/Arm.h"
 #include "subsystems/Intake.h"
 #include "subsystems/Shooter.h"
+#include "subsystems/Vision.h"
 
 
 #include "commands/SlowAuto.h"
@@ -36,6 +37,9 @@
 #include "commands/MoveArmAngle.h"
 #include "commands/ResetArmEncoder.h"
 #include "commands/ShootNote.h"
+#include "commands/AlignArm.h"
+#include "commands/AlignDrivetrain.h"
+#include "commands/SendNote.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -62,6 +66,8 @@ class RobotContainer {
   Shooter m_shooter;
 
   Intake m_intake;
+
+  Vision m_vision;
   //
 
    // chooser for autonomous routines
