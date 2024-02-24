@@ -7,12 +7,12 @@
 
 Arm::Arm() {
     pid.SetTolerance(2);
+    encoder.SetDistancePerPulse(360.0/2048);
 }
 
 void Arm::setArmMotors(double speed) {
     armSpark1.Set(speed);
     armSpark2.Set(speed);
-    encoder.SetDistancePerPulse(360.0/2048);
 }
 
 void Arm::resetEncoder() { 
