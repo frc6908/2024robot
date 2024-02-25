@@ -9,7 +9,7 @@ void OuttakeNote::Initialize() {
 }
 
 void OuttakeNote::Execute() {
-    this->m_intake->setIntakeMotor(-0.7);
+    this->m_intake->setIntakeMotor(-0.2);
 }
 
 void OuttakeNote::End(bool interrupted) {
