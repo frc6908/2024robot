@@ -2,6 +2,7 @@
 
 SendNote::SendNote(Intake* intake) : m_intake{intake} {
     AddRequirements(intake);
+    t = 0;
 }
 
 void SendNote::Initialize() {
@@ -9,7 +10,14 @@ void SendNote::Initialize() {
 }
 
 void SendNote::Execute() {
-    this->m_intake->setIntakeMotor(0.5);
+
+    if (t < 200){
+        this->m_intake->stop();
+    }
+    else{
+        this->m_intake->setIntakeMotor(1.0);
+    }
+    t++;
 }
 
 void SendNote::End(bool interrupted) {

@@ -23,4 +23,5 @@ class SendNote : public frc2::CommandHelper<frc2::Command, SendNote> {
 
   private:
     Intake* m_intake;
+    int t;
 };

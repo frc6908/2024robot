@@ -2,6 +2,7 @@
 
 ShootNote::ShootNote(Shooter* shooter) : m_shooter{shooter} {
     AddRequirements(shooter);
+    
 }
 
 void ShootNote::Initialize() {

@@ -48,13 +48,15 @@ void RobotContainer::ConfigureButtonBindings() {
   frc2::JoystickButton Outtake(&m_joystick, 4);
   Outtake.WhileTrue(new OuttakeNote(&m_intake));
 
+
+
   //Shooter
   frc2::JoystickButton Shooter(&m_joystickArm, 1);
   Shooter.WhileTrue(new ShootNote(&m_shooter));
-  Shooter.WhileTrue(new IntakeNote(&m_intake));
+  Shooter.WhileTrue(new SendNote(&m_intake));
   
 
-  //Arm Manual
+  //Arm Manual UNTESTED
   frc2::JoystickButton armUp(&m_joystickArm, 3);
   armUp.WhileTrue(new MoveArm(&m_arm, true, m_joystickArm.GetThrottle())); 
   frc2::JoystickButton armDown(&m_joystickArm, 6);
@@ -81,9 +83,6 @@ void RobotContainer::ConfigureButtonBindings() {
   // m_chooser.AddOption("Three Piece Auto- Center", &m_threepiece);
 
   frc::Shuffleboard::GetTab("Autonomous").Add(m_chooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
-
-  
-
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {

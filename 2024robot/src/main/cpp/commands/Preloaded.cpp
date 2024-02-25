@@ -20,7 +20,7 @@ void Preloaded::Execute() {
     if(t <= 200) {
         
         this->m_shooter->setShooterMotors(1, 1);
-        if(t > 100){
+        if(t > 200){
              this->m_intake->stop();
         }
         else{
