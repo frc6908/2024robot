@@ -9,7 +9,7 @@
 
 #include "subsystems/Intake.h"
 
-class OuttakeNote : public frc2::CommandHelper<frc2::Command, Outtake> {
+class OuttakeNote : public frc2::CommandHelper<frc2::Command, OuttakeNote> {
  public:
   OuttakeNote(Intake*);
 

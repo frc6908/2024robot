@@ -21,14 +21,14 @@ void Preloaded::Execute() {
         
         this->m_shooter->setShooterMotors(1, 1);
         if(t > 100){
-             this->m_intake->stop();;
+             this->m_intake->stop();
         }
         else{
             this->m_intake->setIntakeMotor(1);
         }
        
     }
-    else if(t>200){
+    else if(t>200 && t<300){
         this->m_drivetrain->setDriveMotors(0.4, 0.4);
         this->m_shooter->stop();
         this->m_intake->stop();
@@ -42,6 +42,10 @@ void Preloaded::Execute() {
             this->m_arm->stop();
         }
         */
+    }
+
+    else{
+        this->m_drivetrain->setDriveMotors(0,0);
     }
     t++;
 }

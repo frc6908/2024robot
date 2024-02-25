@@ -1,22 +1,22 @@
 #include "commands/OuttakeNote.h"
 
-IntakeNote::IntakeNote(Intake* intake) : m_intake{intake} {
+OuttakeNote::OuttakeNote(Intake* intake) : m_intake{intake} {
     AddRequirements(intake);
 }
 
-void IntakeNote::Initialize() {
+void OuttakeNote::Initialize() {
     this->m_intake->stop();
 }
 
-void IntakeNote::Execute() {
+void OuttakeNote::Execute() {
     this->m_intake->setIntakeMotor(-0.7);
 }
 
-void IntakeNote::End(bool interrupted) {
+void OuttakeNote::End(bool interrupted) {
     this->m_intake->stop();
 }
 
-bool IntakeNote::IsFinished() {
+bool OuttakeNote::IsFinished() {
     
 /*
     if(this->m_intake->getDistance() < 300) {
