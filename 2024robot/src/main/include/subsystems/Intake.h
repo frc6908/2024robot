@@ -45,6 +45,6 @@ class Intake : public frc2::SubsystemBase {
         void Periodic() override;
 
     private: 
-        ctre::phoenix::motorcontrol::can::WPI_VictorSPX IntakeMotor{intake::kIntakeTalonPort};
+        ctre::phoenix::motorcontrol::can::WPI_VictorSPX IntakeMotor{intake::kIntakePort};
         //rev::Rev2mDistanceSensor distSensor{rev::Rev2mDistanceSensor::Port::kOnboard, rev::Rev2mDistanceSensor::DistanceUnit::kMilliMeters};
 };

@@ -21,15 +21,13 @@ using namespace pathplanner;
 
 RobotContainer::RobotContainer() : m_drivetrain(){
   // Initialize all of your commands and subsystems here
-
-  
   
 
   // Configure the button bindings
   
   ConfigureButtonBindings();
   // need lambda function to capture the value of the double function for continuous data getting 
-  m_drivetrain.SetDefaultCommand(ArcadeDrive(&m_drivetrain, [this] { return -m_joystick.GetY(); }, [this] { return m_joystick.GetX(); }, [this] { return m_joystick.GetThrottle(); }));
+  m_drivetrain.SetDefaultCommand(ArcadeDrive(&m_drivetrain, [this] { return -m_driveController.GetLeftY(); }, [this] { return m_driveController.GetRightX(); }, [this] { return m_driveController.GetLeftTriggerAxis(); }));
   // Configure the button bindings
 
     
@@ -37,7 +35,7 @@ RobotContainer::RobotContainer() : m_drivetrain(){
 
 void RobotContainer::ConfigureButtonBindings() {
   //drivetrain
-  frc2::JoystickButton flip(&m_joystick, 8);
+  frc2::JoystickButton flip(&m_driveController, 3);
   flip.OnTrue(new FlipDrivetrain(&m_drivetrain));
 
   //Intake
@@ -45,7 +43,7 @@ void RobotContainer::ConfigureButtonBindings() {
   Intake.WhileTrue(new IntakeNote(&m_intake));
 
   //Outtake
-  frc2::JoystickButton Outtake(&m_joystick, 4);
+  frc2::JoystickButton Outtake(&m_driveController, 6);
   Outtake.WhileTrue(new OuttakeNote(&m_intake));
 
 

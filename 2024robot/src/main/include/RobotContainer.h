@@ -7,6 +7,8 @@
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandJoystick.h>
 #include <frc2/command/button/JoystickButton.h>
+#include <frc/XboxController.h>
+#include <frc2/command/button/CommandXboxController.h>
 
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc/smartdashboard/SmartDashboard.h>
@@ -88,6 +90,8 @@ class RobotContainer {
   frc::Joystick m_joystick{oi::kDriveJoystickPort};
   frc::Joystick m_joystickArm{oi::kArmJoystickPort};
 
+  //controller
+  frc::XboxController m_driveController{oi::kDriveControllerPort};
 
   void ConfigureButtonBindings();
 
