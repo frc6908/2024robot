@@ -39,14 +39,13 @@ void RobotContainer::ConfigureButtonBindings() {
   flip.OnTrue(new FlipDrivetrain(&m_drivetrain));
 
   //Intake
+  //having trouble creating while trigger pressed
   frc2::JoystickButton Intake(&m_joystick, 1);
   Intake.WhileTrue(new IntakeNote(&m_intake));
 
   //Outtake
-  frc2::JoystickButton Outtake(&m_driveController, 6);
+  frc2::JoystickButton Outtake(&m_joystickArm, 2);
   Outtake.WhileTrue(new OuttakeNote(&m_intake));
-
-
 
   //Shooter
   frc2::JoystickButton Shooter(&m_joystickArm, 1);
