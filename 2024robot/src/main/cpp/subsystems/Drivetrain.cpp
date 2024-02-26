@@ -132,7 +132,7 @@ frc::Pose2d Drivetrain::getPose(){
 
 
 void Drivetrain::resetPose(frc::Pose2d pose){
-    m_odometry.ResetPosition(gyro.GetRotation2d(), units::length::meter_t(0.0), units::length::meter_t(0.0), 
+    m_odometry.ResetPosition(gyro.GetRotation2d(), units::length::meter_t(leftSpark2.GetPosition()), units::length::meter_t(rightSpark2.GetPosition()), 
     m_pose);
 }
 
@@ -163,5 +163,7 @@ void Drivetrain::driveRobotRelative(frc::ChassisSpeeds speeds){
 
 
 // This method will be called once per scheduler run
-void Drivetrain::Periodic() {}
+void Drivetrain::Periodic() {
+    m_odometry.Update(gyro.GetRotation2d(), units::length::meter_t(leftSpark2.GetPosition()), units::length::meter_t(rightSpark2.GetPosition()));
+}
 
