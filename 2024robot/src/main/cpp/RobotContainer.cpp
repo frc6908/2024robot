@@ -34,8 +34,6 @@ RobotContainer::RobotContainer() : m_drivetrain(){
   
 
   //pathplannertest
-  NamedCommands::registerCommand("marker1", frc2::cmd::Print("Passed marker 1"));
-  NamedCommands::registerCommand("marker2", frc2::cmd::Print("Passed marker 2"));
 }
 
 void RobotContainer::ConfigureButtonBindings() {

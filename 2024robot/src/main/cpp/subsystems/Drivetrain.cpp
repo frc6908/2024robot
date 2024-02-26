@@ -24,6 +24,7 @@
 
 using namespace pathplanner;
 Drivetrain::Drivetrain() {
+
     
     rightSpark1.SetInverted(1); 
     rightSpark2.SetInverted(1);// inverts the right drive motors
@@ -119,7 +120,7 @@ double Drivetrain::getRightEncoderDistance() {
 }
 
 double Drivetrain::venomTicksToInches(double revolutions) {
-    return M_PI * drivetrain::wheelDiameter * revolutions / 10.71;
+    return 3.14159265358979323846 * drivetrain::wheelDiameter * revolutions / 10.71;
 }
 
 void Drivetrain::resetGyro() {

@@ -98,14 +98,24 @@ class Drivetrain : public frc2::SubsystemBase {
   ctre::phoenix::motorcontrol::can::WPI_VictorSPX rightSpark1{drivetrain::kRightDriveSparkPort1};
   frc::CANVenom rightSpark2{drivetrain::kRightDriveSparkPort2};
 
+  AHRS gyro{frc::SPI::Port::kMXP};
+  
+
+
+
+  frc::DifferentialDriveOdometry m_odometry{gyro.GetRotation2d(), units::meter_t{leftSpark2.GetPosition()}, 
+  units::meter_t{rightSpark2.GetPosition(), frc::Pose2d{0_m, 0_m, 0_rad}}};
+
+
+  /*
   frc::Pose2d m_pose{m_odometry.Update(gyro.GetRotation2d(),
     units::meter_t{leftSpark2.GetPosition()}, 
   units::meter_t{rightSpark2.GetPosition()})};
+  */
 
-  frc::DifferentialDriveOdometry m_odometry{gyro.GetRotation2d(), units::meter_t{leftSpark2.GetPosition()}, 
-  units::meter_t{rightSpark2.GetPosition()}};
+  frc::Pose2d m_pose{0_m, 0_m, 0_rad};
 
-  AHRS gyro{frc::SPI::Port::kMXP};
+
 
   bool flipped = false;
 
