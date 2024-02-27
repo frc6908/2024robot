@@ -27,9 +27,8 @@ RobotContainer::RobotContainer() : m_drivetrain(){
   
   ConfigureButtonBindings();
   // need lambda function to capture the value of the double function for continuous data getting 
-  m_drivetrain.SetDefaultCommand(ArcadeDrive(&m_drivetrain, [this] { return -m_driveController.GetLeftY(); }, [this] { return m_driveController.GetRightX(); }, [this] { return m_driveController.GetLeftTriggerAxis(); }));
+  m_drivetrain.SetDefaultCommand(ArcadeDrive(&m_drivetrain, [this] { return -m_driveController.GetLeftY(); }, [this] { return m_driveController.GetLeftX(); }, [this] { return m_driveController.GetLeftTriggerAxis(); }));
   // Configure the button bindings
-
     
 }
 
@@ -39,26 +38,25 @@ void RobotContainer::ConfigureButtonBindings() {
   flip.OnTrue(new FlipDrivetrain(&m_drivetrain));
 
   //Intake
-  //having trouble creating while trigger pressed
-  frc2::JoystickButton Intake(&m_joystick, 1);
+  frc2::JoystickButton Intake(&m_driveController, 6);
   Intake.WhileTrue(new IntakeNote(&m_intake));
 
   //Outtake
-  frc2::JoystickButton Outtake(&m_joystickArm, 2);
+  frc2::JoystickButton Outtake(&m_armController, 3);
   Outtake.WhileTrue(new OuttakeNote(&m_intake));
 
   //Shooter
-  frc2::JoystickButton Shooter(&m_joystickArm, 1);
+  frc2::JoystickButton Shooter(&m_armController, 6);
   Shooter.WhileTrue(new ShootNote(&m_shooter));
   Shooter.WhileTrue(new SendNote(&m_intake));
   
 
   //Arm Manual UNTESTED
-  frc2::JoystickButton armUp(&m_joystickArm, 3);
-  armUp.WhileTrue(new MoveArm(&m_arm, true, m_joystickArm.GetThrottle())); 
-  frc2::JoystickButton armDown(&m_joystickArm, 6);
-  armDown.WhileTrue(new MoveArm(&m_arm, true, m_joystickArm.GetThrottle()));
-
+  frc2::JoystickButton armUp(&m_armController, 4);
+  armUp.WhileTrue(new MoveArm(&m_arm, true, 0.5)); 
+  frc2::JoystickButton armDown(&m_armController, 1);
+  armDown.WhileTrue(new MoveArm(&m_arm, false, 0.5));  
+  
   // Alignment
 
   /*

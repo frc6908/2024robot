@@ -84,14 +84,9 @@ class RobotContainer {
   TwoPieceR m_twopieceR{&m_drivetrain};
   ThreePiece m_threepiece{&m_drivetrain};
   
-
-  
-  //joystick
-  frc::Joystick m_joystick{oi::kDriveJoystickPort};
-  frc::Joystick m_joystickArm{oi::kArmJoystickPort};
-
   //controller
   frc::XboxController m_driveController{oi::kDriveControllerPort};
+  frc::XboxController m_armController{{oi::kArmControllerPort}};
 
   void ConfigureButtonBindings();
 

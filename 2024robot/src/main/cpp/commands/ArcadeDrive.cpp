@@ -26,9 +26,9 @@ void ArcadeDrive::Initialize() {
 void ArcadeDrive::Execute() {
   int tSign = m_turn() < 0 ? -1 : 1;
 
-  double turn = std::pow(m_turn(), 2) * tSign;
+  double turn = std::pow(m_turn(), 2) < 0.3 ? 0.3*tSign : std::pow(m_turn(), 2)*tSign;
 
-  double throttle = std::abs(m_throttle()) < 0.1 ? 0.1 : m_throttle();
+  double throttle = std::abs(m_throttle()) < 0.3 ? 0.3 : m_throttle();
 
   double speedMultiplier = normalize(1, -1, 0.2, 1, m_acceleration());
   
