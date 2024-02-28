@@ -15,7 +15,7 @@ void MaintainArm::Initialize() {
 }
 
 void MaintainArm::Execute() {
-    this->m_arm->setArmMotors(0.1);
+    this->m_arm->setArmMotors(-0.1);
 }
 
 void MaintainArm::End(bool interrupted) {
