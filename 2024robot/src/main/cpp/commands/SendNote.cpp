@@ -24,6 +24,7 @@ void SendNote::Execute() {
 
 void SendNote::End(bool interrupted) {
     this->m_intake->stop();
+    this->m_shooter->stop();
     t = 0;
 }
 
