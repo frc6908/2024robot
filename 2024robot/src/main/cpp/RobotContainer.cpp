@@ -58,7 +58,7 @@ void RobotContainer::ConfigureButtonBindings() {
 
   //Arm Manual UNTESTED
   frc2::JoystickButton armUp(&m_joystickArm, 3);
-  armUp.WhileTrue(new MoveArm(&m_arm, true, m_joystickArm.GetThrottle())); 
+  armUp.WhileTrue(new MoveArm(&m_arm, false, m_joystickArm.GetThrottle())); 
   frc2::JoystickButton armDown(&m_joystickArm, 6);
   armDown.WhileTrue(new MoveArm(&m_arm, true, m_joystickArm.GetThrottle()));
 
