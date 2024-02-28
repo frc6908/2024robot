@@ -45,23 +45,25 @@ void RobotContainer::ConfigureButtonBindings() {
   Intake.WhileTrue(new IntakeNote(&m_intake));
 
   //Outtake
-  frc2::JoystickButton Outtake(&m_joystick, 4);
+  frc2::JoystickButton Outtake(&m_joystick, 7);
   Outtake.WhileTrue(new OuttakeNote(&m_intake));
 
 
 
   //Shooter
   frc2::JoystickButton Shooter(&m_joystickArm, 1);
-  Shooter.WhileTrue(new ShootNote(&m_shooter));
-  Shooter.WhileTrue(new SendNote(&m_intake));
+  // Shooter.WhileTrue(new ShootNote(&m_shooter));
+  Shooter.WhileTrue(new SendNote(&m_intake, &m_shooter));
   
 
   //Arm Manual UNTESTED
   frc2::JoystickButton armUp(&m_joystickArm, 3);
-  armUp.WhileTrue(new MoveArm(&m_arm, false, m_joystickArm.GetThrottle())); 
-  frc2::JoystickButton armDown(&m_joystickArm, 6);
-  armDown.WhileTrue(new MoveArm(&m_arm, true, m_joystickArm.GetThrottle()));
+  armUp.WhileTrue(new MoveArm(&m_arm, false, 0.5)); 
+  frc2::JoystickButton armDown(&m_joystickArm, 5);
+  armDown.WhileTrue(new MoveArm(&m_arm, true, 0.5));
 
+  frc2::JoystickButton maintainArm(&m_joystickArm, 2);
+  maintainArm.WhileTrue(new MaintainArm(&m_arm));
   // Alignment
 
   /*

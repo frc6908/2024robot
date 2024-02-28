@@ -33,6 +33,7 @@
 #include "commands/ArcadeDrive.h"
 #include "commands/FlipDrivetrain.h"
 #include "commands/IntakeNote.h"
+#include "commands/MaintainArm.h"
 #include "commands/MoveArm.h"
 #include "commands/MoveArmAngle.h"
 #include "commands/ResetArmEncoder.h"
