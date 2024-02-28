@@ -25,12 +25,6 @@ void SlowAuto::Execute() {
 
 void SlowAuto::End(bool interrupted) {
     this->m_drivetrain->stop();
-    /*
-    this->m_shooter->setTopMotorVoltage(stopVoltage);
-    this->m_shooter->setBottomMotorVoltage(stopVoltage);
-    this->m_uptake->setTopFeederMotor(0);
-    this->m_uptake->setUptakeMotor(0);
-    */
 }
 
 bool SlowAuto::IsFinished() {

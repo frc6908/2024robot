@@ -8,6 +8,10 @@
 #include <frc2/command/CommandHelper.h>
 
 #include "subsystems/Drivetrain.h"
+#include "subsystems/Shooter.h"
+#include "subsystems/intake.h"
+#include "subsystems/Arm.h"
+
 
 /**
  * An example command that uses an example subsystem.
@@ -18,7 +22,7 @@
  */
 class ThreePiece : public frc2::CommandHelper<frc2::Command, ThreePiece> {
  public:
-  ThreePiece(Drivetrain*);
+  ThreePiece(Drivetrain*, Shooter*, Arm*, Intake*);
 
   void Initialize() override;
 
@@ -31,4 +35,7 @@ class ThreePiece : public frc2::CommandHelper<frc2::Command, ThreePiece> {
   private:
     int t;
     Drivetrain* m_drivetrain;
+    Shooter* m_shooter;
+    Intake* m_intake;
+    Arm* m_arm;
 };

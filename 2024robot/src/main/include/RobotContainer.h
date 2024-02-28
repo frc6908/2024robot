@@ -80,7 +80,7 @@ class RobotContainer {
   Preloaded m_preloaded{&m_drivetrain, &m_shooter, &m_arm, &m_intake};
   AmpAuto m_ampauto{&m_drivetrain};
   TwoPieceR m_twopieceR{&m_drivetrain};
-  ThreePiece m_threepiece{&m_drivetrain};
+  ThreePiece m_threepiece{&m_drivetrain, &m_shooter, &m_arm, &m_intake};
   
 
   

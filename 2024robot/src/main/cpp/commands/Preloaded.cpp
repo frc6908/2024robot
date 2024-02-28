@@ -20,7 +20,8 @@ void Preloaded::Execute() {
     if(t <= 200) {
         
         this->m_shooter->setShooterMotors(1, 1);
-        if(t > 200){
+        this->m_arm->setArmMotors(0.2);
+        if(t< 100){
              this->m_intake->stop();
         }
         else{
@@ -32,7 +33,7 @@ void Preloaded::Execute() {
         this->m_drivetrain->setDriveMotors(0.4, 0.4);
         this->m_shooter->stop();
         this->m_intake->stop();
-
+        this->m_arm->stop();
        /* 
         if(t>100 && t<= 200){
             //this->m_arm->setArmMotors(1);
