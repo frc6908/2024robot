@@ -56,7 +56,7 @@ class Arm : public frc2::SubsystemBase {
 
   frc::ShuffleboardTab& tab = frc::Shuffleboard::GetTab("Test");
   
-  frc::Encoder encoder{0, 1}; // change values for this, but prolly should work anyways
+  frc::Encoder encoder{8, 9}; // change values for this, but prolly should work anyways
   frc::PIDController pid{1, 0, 0};
   
 };
