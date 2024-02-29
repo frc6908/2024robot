@@ -57,6 +57,8 @@ void RobotContainer::ConfigureButtonBindings() {
   armUp.WhileTrue(new MoveArm(&m_arm, false, 0.5)); 
   frc2::JoystickButton armDown(&m_joystickArm, 5);
   armDown.WhileTrue(new MoveArm(&m_arm, true, 0.5));
+  frc2::JoystickButton resetEncoder(&m_joystickArm, 11);
+  resetEncoder.WhileTrue(new ResetArmEncoder(&m_arm));
 
   frc2::JoystickButton maintainArm(&m_joystickArm, 2);
   maintainArm.WhileTrue(new MaintainArm(&m_arm));
@@ -65,8 +67,8 @@ void RobotContainer::ConfigureButtonBindings() {
   
   // frc2::JoystickButton alignArm(&m_joystick, 7);
   // alignArm.WhileTrue(new AlignArm(&m_arm, &m_vision));
-  // frc2::JoystickButton alignDT(&m_joystick, 8);
-  // alignDT.WhileTrue(new AlignDrivetrain(&m_drivetrain, &m_vision));
+  frc2::JoystickButton alignDT(&m_joystick, 11);
+  alignDT.WhileTrue(new AlignDrivetrain(&m_drivetrain, &m_vision));
   // frc2::JoystickButton alignAmp(&m_joystick, 5);
   // alignAmp.WhileTrue(new MoveArmAngle(&m_arm, 106));
   

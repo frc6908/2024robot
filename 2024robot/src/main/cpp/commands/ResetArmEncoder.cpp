@@ -11,25 +11,19 @@ ResetArmEncoder::ResetArmEncoder(Arm* arm)
 }
 
 void ResetArmEncoder::Initialize() {
-    prev = this->m_arm->getEncoderDist();
     this->m_arm->stop();
 }
 
 void ResetArmEncoder::Execute() {
-    frc::SmartDashboard::PutNumber("Encoder", this->m_arm->getEncoderDist());
-    this->m_arm->setArmMotors(0.3);
+    this->m_arm->stop();
 }
 
 void ResetArmEncoder::End(bool interrupted) {
     this->m_arm->resetEncoder();
     this->m_arm->stop();
+    frc::SmartDashboard::PutNumber("Encoder", this->m_arm->getEncoderDist());
 }
 
 bool ResetArmEncoder::IsFinished() {
-    if(abs(prev - this->m_arm->getEncoderDist()) <= 1) {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return true;
 }

@@ -16,7 +16,7 @@ void MaintainArm::Initialize() {
 
 void MaintainArm::Execute() {
     frc::SmartDashboard::PutNumber("Encoder", this->m_arm->getEncoderDist());
-    this->m_arm->setArmMotors(-0.05);
+    this->m_arm->setArmMotors(-0.01);
 }
 
 void MaintainArm::End(bool interrupted) {
