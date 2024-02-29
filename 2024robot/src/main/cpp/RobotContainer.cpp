@@ -21,10 +21,6 @@ using namespace pathplanner;
 
 RobotContainer::RobotContainer() : m_drivetrain(){
   // Initialize all of your commands and subsystems here
-
-  
-  
-
   // Configure the button bindings
   
   ConfigureButtonBindings();
@@ -66,14 +62,14 @@ void RobotContainer::ConfigureButtonBindings() {
   maintainArm.WhileTrue(new MaintainArm(&m_arm));
   // Alignment
 
-  /*
+  
   frc2::JoystickButton alignArm(&m_joystick, 7);
   alignArm.WhileTrue(new AlignArm(&m_arm, &m_vision));
   frc2::JoystickButton alignDT(&m_joystick, 8);
   alignDT.WhileTrue(new AlignDrivetrain(&m_drivetrain, &m_vision));
   frc2::JoystickButton alignAmp(&m_joystick, 5);
   alignAmp.WhileTrue(new MoveArmAngle(&m_arm, 106));
-  */
+  
 
 
 
@@ -81,8 +77,8 @@ void RobotContainer::ConfigureButtonBindings() {
   m_chooser.AddOption("Preloaded Mobility", &m_preloaded);
   m_chooser.AddOption("Two Piece Auto- Center", &m_twopiece);
   // m_chooser.AddOption("Amp Auton", &m_ampauto);
-  // m_chooser.AddOption("Two Piece Auto- Right", &m_twopieceR);
-  // m_chooser.AddOption("Three Piece Auto- Center", &m_threepiece);
+  m_chooser.AddOption("Two Piece Auto- Right", &m_twopieceR);
+  m_chooser.AddOption("Three Piece Auto- Center", &m_threepiece);
 
   frc::Shuffleboard::GetTab("Autonomous").Add(m_chooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
 }
