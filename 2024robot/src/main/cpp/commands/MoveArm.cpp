@@ -15,6 +15,7 @@ void MoveArm::Initialize() {
 }
 
 void MoveArm::Execute() {
+    frc::SmartDashboard::PutNumber("Encoder", this->m_arm->getEncoderDist());
     if(dir) {
         this->m_arm->setArmMotors(throttle);
     }

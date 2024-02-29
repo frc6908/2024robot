@@ -24,8 +24,8 @@
 using namespace pathplanner;
 Drivetrain::Drivetrain() {
     
-    rightSpark1.SetInverted(1); 
-    rightSpark2.SetInverted(1);// inverts the right drive motors
+    rightVictor.SetInverted(1); 
+    rightVenom.SetInverted(1);// inverts the right drive motors
     resetGyro();
 }
 
@@ -34,15 +34,15 @@ void Drivetrain::setDriveMotors(double left, double right) {
     //tab.Add("Right Motor", right);
     
     if (flipped) {
-        leftSpark1.Set(-right);
-        leftSpark2.Set(-right);
-        rightSpark1.Set(-left);
-        rightSpark2.Set(-left);
+        leftVictor.Set(-right);
+        leftVenom.Set(-right);
+        rightVictor.Set(-left);
+        rightVenom.Set(-left);
     } else {
-        leftSpark1.Set(left);
-        leftSpark2.Set(left);
-        rightSpark1.Set(right);
-        rightSpark2.Set(right);
+        leftVictor.Set(left);
+        leftVenom.Set(left);
+        rightVictor.Set(right);
+        rightVenom.Set(right);
     }
     //NetworkTableEntry testTab = Shuffleboard.getTab("Test").add("Pi", 3.14);
 }
@@ -52,10 +52,10 @@ void Drivetrain::arcadeDrive(double throttle, double turn) {
 }
 
 void Drivetrain::stop() {
-    leftSpark1.Set(0);
-    leftSpark2.Set(0);
-    rightSpark1.Set(0);
-    rightSpark2.Set(0);
+    leftVictor.Set(0);
+    leftVenom.Set(0);
+    rightVictor.Set(0);
+    rightVenom.Set(0);
 }
 
 void Drivetrain::flipDT() {
@@ -81,16 +81,16 @@ double Drivetrain::getPitchAsAngle() {
 }
 
 void Drivetrain::resetEncoders() {
-    rightSpark2.SetPosition(0.0);
-    leftSpark2.SetPosition(0.0);
+    rightVenom.SetPosition(0.0);
+    leftVenom.SetPosition(0.0);
 }
 
 double Drivetrain::getLeftEncoderDistance() {
-    return leftSpark2.GetPosition();
+    return leftVenom.GetPosition();
 }
 
 double Drivetrain::getRightEncoderDistance() {
-    return rightSpark2.GetPosition();
+    return rightVenom.GetPosition();
 }
 
 double Drivetrain::venomTicksToInches(double revolutions) {

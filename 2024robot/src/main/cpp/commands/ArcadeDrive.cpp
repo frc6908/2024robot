@@ -34,8 +34,10 @@ void ArcadeDrive::Execute() {
   
   //tab.Add("LeftM", ( (throttle + turn) * speedMultiplier) );
   //tab.Add("RightM",  ( (throttle - turn) * speedMultiplier) );
+  frc::SmartDashboard::PutNumber("Drivetrain Orientation", this->m_drivetrain->getHeadingAsAngle());
   frc::SmartDashboard::PutNumber("leftMotor", ( (throttle + turn) * speedMultiplier));
   frc::SmartDashboard::PutNumber("rightMotor", ( (throttle - turn) * speedMultiplier));
+  frc::SmartDashboard::PutNumber("Drive Throttle", throttle);
   this->m_drivetrain->setDriveMotors(((throttle + turn) * speedMultiplier), ((throttle - turn) * speedMultiplier));  
 } 
 

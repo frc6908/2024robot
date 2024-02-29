@@ -16,6 +16,7 @@ void ResetArmEncoder::Initialize() {
 }
 
 void ResetArmEncoder::Execute() {
+    frc::SmartDashboard::PutNumber("Encoder", this->m_arm->getEncoderDist());
     this->m_arm->setArmMotors(0.3);
 }
 

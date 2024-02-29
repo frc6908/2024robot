@@ -85,11 +85,11 @@ class Drivetrain : public frc2::SubsystemBase {
 
  private:
 
-  ctre::phoenix::motorcontrol::can::WPI_VictorSPX leftSpark1{drivetrain::kLeftDriveSparkPort1};
-  frc::CANVenom leftSpark2{drivetrain::kLeftDriveSparkPort2};
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX leftVictor{drivetrain::kLeftDriveSparkPort1};
+  frc::CANVenom leftVenom{drivetrain::kLeftDriveSparkPort2};
 
-  ctre::phoenix::motorcontrol::can::WPI_VictorSPX rightSpark1{drivetrain::kRightDriveSparkPort1};
-  frc::CANVenom rightSpark2{drivetrain::kRightDriveSparkPort2};
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX rightVictor{drivetrain::kRightDriveSparkPort1};
+  frc::CANVenom rightVenom{drivetrain::kRightDriveSparkPort2};
 
   AHRS gyro{frc::SPI::Port::kMXP};
 
