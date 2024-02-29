@@ -81,6 +81,10 @@ void RobotContainer::ConfigureButtonBindings() {
   m_chooser.AddOption("Three Piece Auto- Center", &m_threepiece);
 
   frc::Shuffleboard::GetTab("Autonomous").Add(m_chooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
+  frc::SmartDashboard::PutNumber("Encoder", m_arm.getEncoderDist());
+  frc::SmartDashboard::PutNumber("Drive Speed", m_joystick.GetThrottle());
+  frc::SmartDashboard::PutNumber("Arm Speed", m_joystickArm.GetThrottle());
+  frc::SmartDashboard::PutNumber("Drivetrain Orientation", m_drivetrain.getHeadingAsAngle());
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
