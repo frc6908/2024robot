@@ -11,10 +11,11 @@ void AlignDrivetrain::Initialize() {
 
 void AlignDrivetrain::Execute() {
     photon::PhotonPipelineResult res = this->m_vision->getResult();
+    double yaw = this->m_drivetrain->getHeadingAsAngle() + res.GetBestTarget().GetYaw();
     bool flipped = this->m_drivetrain->isFlipped();
     double rotation_speed = 0;
     if(res.HasTargets()) {
-        rotation_speed = (flipped ? 1 : -1) * pid.Calculate(res.GetBestTarget().GetYaw(), 0); // adjust values as needed.
+        rotation_speed = (flipped ? 1 : -1) * pid.Calculate(this->m_drivetrain->getHeadingAsAngle(), yaw); // adjust values as needed.
     }
     else {
         rotation_speed = 0.2;

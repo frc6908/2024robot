@@ -69,18 +69,20 @@ void RobotContainer::ConfigureButtonBindings() {
   // alignArm.WhileTrue(new AlignArm(&m_arm, &m_vision));
   frc2::JoystickButton alignDT(&m_joystick, 11);
   alignDT.WhileTrue(new AlignDrivetrain(&m_drivetrain, &m_vision));
-  frc2::JoystickButton alignAmp(&m_joystickArm, 9);
+  frc2::JoystickButton alignAmp(&m_joystickArm, 6);
   alignAmp.WhileTrue(new MoveArmAngle(&m_arm, 96));
-  
-
+  frc2::JoystickButton alignIntake(&m_joystickArm, 4);
+  alignIntake.WhileTrue(new MoveArmAngle(&m_arm, 0));
+  frc2::JoystickButton alignStart(&m_joystickArm, 9);
+  alignStart.WhileTrue(new MoveArmAngle(&m_arm, 70)); // change value
 
 
   m_chooser.SetDefaultOption("Slow Auto", &m_slowauto);
   m_chooser.AddOption("Preloaded Mobility", &m_preloaded);
-  m_chooser.AddOption("Two Piece Auto- Center", &m_twopiece);
+  m_chooser.AddOption("Two Piece Auto - Center", &m_twopiece);
   // m_chooser.AddOption("Amp Auton", &m_ampauto);
-  m_chooser.AddOption("Two Piece Auto- Right", &m_twopieceR);
-  m_chooser.AddOption("Three Piece Auto- Center", &m_threepiece);
+  m_chooser.AddOption("Two Piece Auto - Right", &m_twopieceR);
+  m_chooser.AddOption("Three Piece Auto - Center", &m_threepiece);
 
   frc::Shuffleboard::GetTab("Autonomous").Add(m_chooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
 }
