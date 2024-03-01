@@ -19,7 +19,7 @@ void MoveArm::Execute() {
     if(dir) {
         this->m_arm->setArmMotors(throttle);
     }
-    else {
+    else if(!dir && this->m_arm->getEncoderDist() <= 97) {
         this->m_arm->setArmMotors(-throttle);
     }
 }

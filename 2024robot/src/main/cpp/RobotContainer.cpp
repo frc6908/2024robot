@@ -53,10 +53,10 @@ void RobotContainer::ConfigureButtonBindings() {
   
 
   //Arm Manual UNTESTED
-  frc2::JoystickButton armUp(&m_joystickArm, 3);
-  armUp.WhileTrue(new MoveArm(&m_arm, false, 0.5)); 
-  frc2::JoystickButton armDown(&m_joystickArm, 5);
-  armDown.WhileTrue(new MoveArm(&m_arm, true, 0.5));
+  frc2::JoystickButton armDown(&m_joystickArm, 3);
+  armDown.WhileTrue(new MoveArm(&m_arm, true, 0.5)); 
+  frc2::JoystickButton armUp(&m_joystickArm, 5);
+  armUp.WhileTrue(new MoveArm(&m_arm, false, 0.5));
   frc2::JoystickButton resetEncoder(&m_joystickArm, 11);
   resetEncoder.WhileTrue(new ResetArmEncoder(&m_arm));
 
@@ -69,8 +69,8 @@ void RobotContainer::ConfigureButtonBindings() {
   // alignArm.WhileTrue(new AlignArm(&m_arm, &m_vision));
   frc2::JoystickButton alignDT(&m_joystick, 11);
   alignDT.WhileTrue(new AlignDrivetrain(&m_drivetrain, &m_vision));
-  // frc2::JoystickButton alignAmp(&m_joystick, 5);
-  // alignAmp.WhileTrue(new MoveArmAngle(&m_arm, 106));
+  frc2::JoystickButton alignAmp(&m_joystickArm, 9);
+  alignAmp.WhileTrue(new MoveArmAngle(&m_arm, 96));
   
 
 
@@ -83,6 +83,14 @@ void RobotContainer::ConfigureButtonBindings() {
   m_chooser.AddOption("Three Piece Auto- Center", &m_threepiece);
 
   frc::Shuffleboard::GetTab("Autonomous").Add(m_chooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
+}
+
+void RobotContainer::GetSmartDashboard() {
+  // frc::Shuffleboard::GetTab("Main Dashboard").Add("Encoder", m_arm.getEncoderDist());
+  // frc::Shuffleboard::GetTab("Main Dashboard").Add("Drivetrain Orientation", m_drivetrain.getHeadingAsAngle());
+  frc::SmartDashboard::PutNumber("Encoder", m_arm.getEncoderDist());
+  frc::SmartDashboard::PutNumber("Drivetrain Orientation", m_drivetrain.getHeadingAsAngle());
+
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {

@@ -14,10 +14,10 @@ void AlignDrivetrain::Execute() {
     bool flipped = this->m_drivetrain->isFlipped();
     double rotation_speed = 0;
     if(res.HasTargets()) {
-        rotation_speed = (flipped ? -1 : 1) * pid.Calculate(res.GetBestTarget().GetYaw(), 0); // adjust values as needed.
+        rotation_speed = (flipped ? 1 : -1) * pid.Calculate(res.GetBestTarget().GetYaw(), 0); // adjust values as needed.
     }
     else {
-        rotation_speed = 0.4;
+        rotation_speed = 0.2;
     }
     frc::SmartDashboard::PutNumber("PID", rotation_speed);
     this->m_drivetrain->arcadeDrive(0, rotation_speed);

@@ -53,6 +53,7 @@
 class RobotContainer {
  public:
   RobotContainer();
+  void GetSmartDashboard();
   frc2::Command* GetAutonomousCommand();
 
  private:

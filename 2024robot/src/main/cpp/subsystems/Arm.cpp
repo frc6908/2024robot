@@ -24,7 +24,7 @@ double Arm::getEncoderDist() {
 }
 
 double Arm::PIDCalculate(double target) {
-    return pid.Calculate(getEncoderDist(), target);
+    return -pid.Calculate(getEncoderDist(), target);
 }
 
 bool Arm::PIDfinished() {
