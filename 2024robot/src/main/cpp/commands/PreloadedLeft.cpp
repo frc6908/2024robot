@@ -33,12 +33,12 @@ void PreloadedLeft::Execute() {
     else if(t <= 225) {
         this->m_intake->setIntakeMotor(1.0);
     }
-    else if(t <= 240) {
+    else if(t <= 270) {
         this->m_shooter->stop();
         this->m_intake->stop();
         this->m_drivetrain->setDriveMotors(0.4, -0.4);
     }
-    else if(t <= 290) {
+    else if(t <= 320) {
         this->m_drivetrain->setDriveMotors(0.4, 0.4);
     }
     else{
