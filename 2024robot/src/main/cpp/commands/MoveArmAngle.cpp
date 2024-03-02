@@ -16,7 +16,8 @@ void MoveArmAngle::Initialize() {
 
 void MoveArmAngle::Execute() {
     frc::SmartDashboard::PutNumber("Encoder", this->m_arm->getEncoderDist());
-    this->m_arm->setArmMotors(this->m_arm->PIDCalculate(target));
+    double val = this->m_arm->PIDCalculate(target);
+    this->m_arm->setArmMotors(((val >= -1 && val <= 1) ? val : 0));
 }
 
 void MoveArmAngle::End(bool interrupted) {

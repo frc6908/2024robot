@@ -33,7 +33,7 @@ RobotContainer::RobotContainer() : m_drivetrain(){
 
 void RobotContainer::ConfigureButtonBindings() {
   //drivetrain
-  frc2::JoystickButton flip(&m_joystick, 8);
+  frc2::JoystickButton flip(&m_joystick, 2);
   flip.OnTrue(new FlipDrivetrain(&m_drivetrain));
 
   //Intake
@@ -41,7 +41,7 @@ void RobotContainer::ConfigureButtonBindings() {
   Intake.WhileTrue(new IntakeNote(&m_intake));
 
   //Outtake
-  frc2::JoystickButton Outtake(&m_joystickArm, 7);
+  frc2::JoystickButton Outtake(&m_joystickArm, 9);
   Outtake.WhileTrue(new OuttakeNote(&m_intake));
 
 
@@ -50,7 +50,7 @@ void RobotContainer::ConfigureButtonBindings() {
   frc2::JoystickButton Shooter(&m_joystickArm, 1);
   // Shooter.WhileTrue(new ShootNote(&m_shooter));
   Shooter.WhileTrue(new SendNote(&m_intake, &m_shooter));
-  frc2::JoystickButton AmpShooter(&m_joystickArm, 8);
+  frc2::JoystickButton AmpShooter(&m_joystickArm, 7);
   AmpShooter.WhileTrue(new ScoreAmp(&m_intake, &m_shooter));
 
   //Arm Manual UNTESTED
@@ -70,12 +70,12 @@ void RobotContainer::ConfigureButtonBindings() {
   // alignArm.WhileTrue(new AlignArm(&m_arm, &m_vision));
   frc2::JoystickButton alignDT(&m_joystick, 11);
   alignDT.WhileTrue(new AlignDrivetrain(&m_drivetrain, &m_vision));
-  frc2::JoystickButton alignAmp(&m_joystickArm, 6);
+  frc2::JoystickButton alignAmp(&m_joystickArm, 8);
   alignAmp.WhileTrue(new MoveArmAngle(&m_arm, 96));
-  frc2::JoystickButton alignIntake(&m_joystickArm, 4);
+  frc2::JoystickButton alignIntake(&m_joystickArm, 12);
   alignIntake.WhileTrue(new MoveArmAngle(&m_arm, 0));
-  frc2::JoystickButton alignStart(&m_joystickArm, 9);
-  alignStart.WhileTrue(new MoveArmAngle(&m_arm, 70)); // change value
+  frc2::JoystickButton alignStart(&m_joystickArm, 10);
+  alignStart.WhileTrue(new MoveArmAngle(&m_arm, 79)); // change value
 
 
   m_chooser.SetDefaultOption("Slow Auto", &m_slowauto);
