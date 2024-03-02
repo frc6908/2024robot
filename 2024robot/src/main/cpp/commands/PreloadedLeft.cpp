@@ -2,16 +2,16 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "commands/Preloaded.h"
+#include "commands/PreloadedLeft.h"
 
-Preloaded::Preloaded(Drivetrain* drivetrain, Shooter* shooter, Arm* arm, Intake* intake) : m_drivetrain{drivetrain}, m_shooter{shooter}, m_arm{arm}, m_intake{intake} {
+PreloadedLeft::PreloadedLeft(Drivetrain* drivetrain, Shooter* shooter, Arm* arm, Intake* intake) : m_drivetrain{drivetrain}, m_shooter{shooter}, m_arm{arm}, m_intake{intake} {
     AddRequirements(drivetrain); 
     AddRequirements(shooter);
     AddRequirements(arm);
     AddRequirements(intake);
 }
 
-void Preloaded::Initialize() {
+void PreloadedLeft::Initialize() {
     t = 0;
     this->m_drivetrain->stop();
     this->m_shooter->stop();
@@ -19,7 +19,7 @@ void Preloaded::Initialize() {
     this->m_intake->stop();
 }
 
-void Preloaded::Execute() {
+void PreloadedLeft::Execute() {
     if(t <= 60) {
         this->m_arm->setArmMotors(0.5);
     }
@@ -33,9 +33,12 @@ void Preloaded::Execute() {
     else if(t <= 225) {
         this->m_intake->setIntakeMotor(1.0);
     }
-    else if(t <= 275) {
+    else if(t <= 240) {
         this->m_shooter->stop();
         this->m_intake->stop();
+        this->m_drivetrain->setDriveMotors(0.4, -0.4);
+    }
+    else if(t <= 290) {
         this->m_drivetrain->setDriveMotors(0.4, 0.4);
     }
     else{
@@ -44,13 +47,13 @@ void Preloaded::Execute() {
     t++;
 }
 
-void Preloaded::End(bool interrupted) {
+void PreloadedLeft::End(bool interrupted) {
     this->m_drivetrain->stop();
     this->m_shooter->stop();
     this->m_arm->stop();
     this->m_intake->stop();
 }
 
-bool Preloaded::IsFinished() {
+bool PreloadedLeft::IsFinished() {
     return false;
 }

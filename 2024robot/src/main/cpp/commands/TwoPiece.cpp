@@ -12,68 +12,26 @@ TwoPiece::TwoPiece(Drivetrain* drivetrain, Shooter* shooter, Arm* arm, Intake* i
 }
 
 void TwoPiece::Initialize() {
-    t = 0;
+    t = 0, k = 0;
     this->m_drivetrain->stop();
 }
 
 void TwoPiece::Execute() {
-    if(t <= 200) {
-        
-        this->m_shooter->setShooterMotors(1, 1);
-        if(t > 100){
-             this->m_intake->setIntakeMotor(1);;
-        }
-        else{
-            this->m_intake->stop();
-        }
-       
-    }
-    else if(t>200 && t<= 400){
-        this->m_drivetrain->setDriveMotors(0.2, 0.2);
-        this->m_shooter->stop();
-        this->m_intake->setIntakeMotor(0.5);
-
-       /* 
-        if(t>100 && t<= 200){
-            //this->m_arm->setArmMotors(1);
-        }
-
-        else{
-            this->m_arm->stop();
-        }
-        */
-    }
-
-    else if(t<400 & t<500){
-        this->m_drivetrain->setDriveMotors(-0.4,-0.4);
-    }
-
-    else if(t>500 && t <= 700){
-        this->m_drivetrain->stop();
-        this->m_shooter->setShooterMotors(1,1);
-        if(t > 600){
-             this->m_intake->setIntakeMotor(1);;
-        }
-        else{
-            this->m_intake->stop();
-        }
-    }
-
-    else if (t>700 && t <800){
-        this->m_arm->setArmMotors(-0.5);
+    // shoot note
+    this->m_shooter->setShooterMotors(-1.0, -1.0);
+    if (t < 50){
         this->m_intake->stop();
-        this->m_drivetrain->setDriveMotors(0.4,0.4);
-        this->m_shooter->setShooterMotors(1,1);
     }
-
     else{
-        this->m_arm->stop();
-        this->m_intake->stop();
-        this->m_drivetrain->stop();;
-        this->m_shooter->stop();
+        this->m_intake->setIntakeMotor(1.0);
     }
-
+    // move to next note while intaking
     
+    // move back to start
+
+    // shoot note
+
+    // move out of zone
     t++;
 }
 
