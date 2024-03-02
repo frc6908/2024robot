@@ -9,8 +9,8 @@
 
 #include "subsystems/Drivetrain.h"
 #include "subsystems/Shooter.h"
-#include "subsystems/Arm.h"
 #include "subsystems/Intake.h"
+#include "subsystems/Arm.h"
 
 /**
  * An example command that uses an example subsystem.
@@ -19,9 +19,9 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class TwoPiece : public frc2::CommandHelper<frc2::Command, TwoPiece> {
+class PreloadedLeft : public frc2::CommandHelper<frc2::Command, PreloadedLeft> {
  public:
-  TwoPiece(Drivetrain*, Shooter*, Arm*, Intake*);
+  PreloadedLeft(Drivetrain*, Shooter*, Arm*, Intake*);
 
   void Initialize() override;
 
@@ -32,7 +32,7 @@ class TwoPiece : public frc2::CommandHelper<frc2::Command, TwoPiece> {
   bool IsFinished() override;
 
   private:
-    int t, k;
+    int t;
     Drivetrain* m_drivetrain;
     Shooter* m_shooter;
     Arm* m_arm;

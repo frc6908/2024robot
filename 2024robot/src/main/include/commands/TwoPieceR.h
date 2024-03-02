@@ -32,7 +32,7 @@ class TwoPieceR : public frc2::CommandHelper<frc2::Command, TwoPieceR> {
   bool IsFinished() override;
 
   private:
-    int t;
+    int t, k;
     Drivetrain* m_drivetrain;
     Arm* m_arm;
     Shooter* m_shooter;
