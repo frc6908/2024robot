@@ -40,6 +40,7 @@
 #include "commands/ShootNote.h"
 #include "commands/AlignArm.h"
 #include "commands/AlignDrivetrain.h"
+#include "commands/ScoreAmp.h"
 #include "commands/SendNote.h"
 #include "commands/OuttakeNote.h"
 
