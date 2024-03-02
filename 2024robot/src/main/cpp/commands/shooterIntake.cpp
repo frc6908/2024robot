@@ -1,22 +1,22 @@
-#include "commands/ShootNote.h"
+#include "commands/shooterIntake.h"
 
-ShootNote::ShootNote(Shooter* shooter) : m_shooter{shooter} {
+shooterIntake::shooterIntake(Shooter* shooter) : m_shooter{shooter} {
     AddRequirements(shooter);
     
 }
 
-void ShootNote::Initialize() {
+void shooterIntake::Initialize() {
     this->m_shooter->stop();
 }
 
-void ShootNote::Execute() {
+void shooterIntake::Execute() {
     this->m_shooter->setShooterMotors(-0.5, -0.5);
 }
 
-void ShootNote::End(bool interrupted) {
+void shooterIntake::End(bool interrupted) {
     this->m_shooter->stop();
 }
 
-bool ShootNote::IsFinished() {
+bool shooterIntake::IsFinished() {
     return false;
 }

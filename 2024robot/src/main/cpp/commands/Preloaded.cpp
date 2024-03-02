@@ -25,7 +25,7 @@ void Preloaded::Execute() {
     }
     if(t >= 150 && t <= 200) {
         this->m_arm->stop();
-        if(t == 100) {
+        if(t == 150) {
             this->m_arm->resetEncoder();
         }
         this->m_shooter->setShooterMotors(-1, -1);
