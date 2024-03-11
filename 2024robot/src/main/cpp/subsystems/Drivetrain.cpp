@@ -83,21 +83,6 @@ double Drivetrain::getPitchAsAngle() {
     return getPitch().Degrees().value();
 }
 
-
-
-void Drivetrain::resetEncoders() {
-    rightSpark2.SetPosition(0.0);
-    leftSpark2.SetPosition(0.0);
-}
-
-double Drivetrain::getLeftEncoderDistance() {
-    return leftSpark2.GetPosition();
-}
-
-double Drivetrain::getRightEncoderDistance() {
-    return rightSpark2.GetPosition();
-}
-
 double Drivetrain::venomTicksToInches(double revolutions) {
     return M_PI * drivetrain::wheelDiameter * revolutions / 10.71;
 }
@@ -108,6 +93,25 @@ void Drivetrain::resetGyro() {
 
 
 /*
+
+
+void Drivetrain::resetEncoders() {
+    rightSpark2.Set(0.0);
+    rightSpark2.Set(0.0);
+}
+
+double Drivetrain::getLeftEncoderDistance() {
+    return leftSpark1.Get();
+}
+
+double Drivetrain::getRightEncoderDistance() {
+    return rightSpark2.Get();
+}
+
+
+
+
+
 
 frc::Pose2d Drivetrain::getPose(){
     units::meter_t posX{gyro.GetDisplacementX()};
