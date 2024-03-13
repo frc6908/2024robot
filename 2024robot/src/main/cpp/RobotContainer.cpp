@@ -41,7 +41,8 @@ void RobotContainer::ConfigureButtonBindings() {
   frc2::JoystickButton flip(&m_joystick, 8);
   flip.OnTrue(new FlipDrivetrain(&m_drivetrain));
 
-
+  frc2::JoystickButton turn(&m_joystick, 7);
+  turn.WhileTrue(new TurnDrivetrain(&m_drivetrain, 90));
 
   //register Autons on PathPlanner
   //exampleAuto = PathPlannerAuto("Example Auto").ToPtr().Unwrap();

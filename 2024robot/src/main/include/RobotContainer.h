@@ -21,6 +21,7 @@
 #include "commands/SlowAuto.h"
 #include "commands/ArcadeDrive.h"
 #include "commands/FlipDrivetrain.h"
+#include "commands/TurnDrivetrain.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
