@@ -107,16 +107,16 @@ double Drivetrain::getPitchAsAngle() {
 
 
 void Drivetrain::resetEncoders() {
-    rightSpark2.SetPosition(0.0);
-    leftSpark2.SetPosition(0.0);
+    rightSpark2.SetSelectedSensorPosition(0.0);
+    leftSpark2.SetSelectedSensorPosition(0.0);
 }
 
 double Drivetrain::getLeftEncoderDistance() {
-    return leftSpark2.GetPosition();
+    return leftSpark2.GetActiveTrajectoryPosition();
 }
 
 double Drivetrain::getRightEncoderDistance() {
-    return rightSpark2.GetPosition();
+    return rightSpark2.GetActiveTrajectoryPosition();
 }
 
 double Drivetrain::venomTicksToInches(double revolutions) {
@@ -133,7 +133,7 @@ frc::Pose2d Drivetrain::getPose(){
 
 
 void Drivetrain::resetPose(frc::Pose2d pose){
-    m_odometry.ResetPosition(gyro.GetRotation2d(), units::length::meter_t(leftSpark2.GetPosition()), units::length::meter_t(rightSpark2.GetPosition()), 
+    m_odometry.ResetPosition(gyro.GetRotation2d(), units::length::meter_t(leftSpark2.GetActiveTrajectoryPosition()), units::length::meter_t(rightSpark2.GetActiveTrajectoryPosition()), 
     m_pose);
 }
 
@@ -165,6 +165,6 @@ void Drivetrain::driveRobotRelative(frc::ChassisSpeeds speeds){
 
 // This method will be called once per scheduler run
 void Drivetrain::Periodic() {
-    m_odometry.Update(gyro.GetRotation2d(), units::length::meter_t(leftSpark2.GetPosition()), units::length::meter_t(rightSpark2.GetPosition()));
+    m_odometry.Update(gyro.GetRotation2d(), units::length::meter_t(leftSpark2.GetActiveTrajectoryPosition()), units::length::meter_t(rightSpark2.GetActiveTrajectoryPosition()));
 }
 
