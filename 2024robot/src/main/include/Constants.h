@@ -33,5 +33,10 @@ namespace oi {
     const int kArmJoystickPort = 1; // elbow joystick
 }
 
+namespace vision {
+    const int kTargetHeight = 0; // target height 
+    const int kCameraHeight = 0; // camera height
+    const int kCameraAngle = 0; // camera angle to horizontal
+}
 
 

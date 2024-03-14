@@ -91,6 +91,9 @@ void Drivetrain::resetGyro() {
     gyro.Reset();
 }
 
+bool Drivetrain::isFlipped() {
+    return flipped;
+}
 
 /*
 
