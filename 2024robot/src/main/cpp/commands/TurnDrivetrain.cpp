@@ -12,10 +12,13 @@ TurnDrivetrain::TurnDrivetrain(Drivetrain* drivetrain, double angle)
 
 void TurnDrivetrain::Initialize() {
     this->m_drivetrain->stop();
+    this->pid.SetTolerance(2);
 }
 
 void TurnDrivetrain::Execute() {
-    this->m_drivetrain->arcadeDrive(0, this->pid.Calculate(this->m_drivetrain->getHeadingAsAngle(), turn));
+    frc::SmartDashboard::PutNumber("Gyro", this->m_drivetrain->getHeadingAsAngle());
+    
+    this->m_drivetrain->arcadeDrive(0, -this->pid.Calculate(this->m_drivetrain->getHeadingAsAngle(), turn));
 }
 
 void TurnDrivetrain::End(bool interrupted) {
