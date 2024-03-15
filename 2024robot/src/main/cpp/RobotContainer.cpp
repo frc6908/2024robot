@@ -44,6 +44,9 @@ void RobotContainer::ConfigureButtonBindings() {
   frc2::JoystickButton turn(&m_joystick, 7);
   turn.WhileTrue(new TurnDrivetrain(&m_drivetrain, 90));
 
+  frc2::JoystickButton turnVision(&m_joystick, 11);
+  turnVision.WhileTrue(new AlignDrivetrain(&m_drivetrain, &m_vision));
+
   //register Autons on PathPlanner
   //exampleAuto = PathPlannerAuto("Example Auto").ToPtr().Unwrap();
   m_chooser.SetDefaultOption("Slow Auto", &m_slowauto);

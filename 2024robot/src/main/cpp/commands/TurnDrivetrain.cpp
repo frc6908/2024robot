@@ -16,7 +16,7 @@ void TurnDrivetrain::Initialize() {
 }
 
 void TurnDrivetrain::Execute() {
-    frc::SmartDashboard::PutNumber("Gyro", this->m_drivetrain->getHeadingAsAngle());
+    // frc::SmartDashboard::PutNumber("Gyro", this->m_drivetrain->getHeadingAsAngle());
     
     this->m_drivetrain->arcadeDrive(0, -this->pid.Calculate(this->m_drivetrain->getHeadingAsAngle(), turn));
 }
@@ -26,5 +26,5 @@ void TurnDrivetrain::End(bool interrupted) {
 }
 
 bool TurnDrivetrain::IsFinished() {
-    return this->pid.AtSetpoint();
+    return false;    
 }

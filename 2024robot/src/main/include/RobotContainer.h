@@ -16,12 +16,14 @@
 
 
 #include "subsystems/Drivetrain.h"
+#include "subsystems/Vision.h"
 
 #include "commands/TwoPiece.h"
 #include "commands/SlowAuto.h"
 #include "commands/ArcadeDrive.h"
 #include "commands/FlipDrivetrain.h"
 #include "commands/TurnDrivetrain.h"
+#include "commands/AlignDrivetrain.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -43,6 +45,7 @@ class RobotContainer {
   //drivetrain
   Drivetrain m_drivetrain;
 
+  Vision m_vision;
   //
 
    // chooser for autonomous routines

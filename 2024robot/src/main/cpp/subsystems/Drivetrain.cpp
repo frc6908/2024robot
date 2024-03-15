@@ -27,6 +27,9 @@ Drivetrain::Drivetrain() {
     rightSpark1.SetInverted(1); 
     rightSpark2.SetInverted(1);// inverts the right drive motors
     resetGyro();
+    frc::SmartDashboard::PutNumber("kP", 0.01);
+    frc::SmartDashboard::PutNumber("kI", 0);
+    frc::SmartDashboard::PutNumber("kD", 0);
 }
 
 void Drivetrain::setDriveMotors(double left, double right) {
@@ -68,7 +71,7 @@ frc::Rotation2d Drivetrain::getHeading() {
 }
 
 double Drivetrain::getHeadingAsAngle() {
-    return getHeading().Degrees().value();
+    return fmod(fmod(getHeading().Degrees().value(), 360) + 360, 360) - 180;
 }
 
 frc::Rotation2d Drivetrain::getPitch() {
@@ -154,5 +157,7 @@ frc::DifferentialDriveWheelSpeeds Drivetrain::driveRobotRelative(frc::ChassisSpe
 
 
 // This method will be called once per scheduler run
-void Drivetrain::Periodic() {}
+void Drivetrain::Periodic() {
+    frc::SmartDashboard::PutNumber("Gyro", getHeadingAsAngle());
+}
 

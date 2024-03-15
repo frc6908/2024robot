@@ -34,5 +34,6 @@ class AlignDrivetrain : public frc2::CommandHelper<frc2::Command, AlignDrivetrai
   private:
     Drivetrain* m_drivetrain;
     Vision* m_vision;
-    frc::PIDController pid{0.01, 0, 0};
+    frc::PIDController pid{frc::SmartDashboard::GetNumber("kP", 0.01), frc::SmartDashboard::GetNumber("kI", 0), frc::SmartDashboard::GetNumber("kD", 0)};
+
 };

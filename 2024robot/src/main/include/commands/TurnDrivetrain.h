@@ -32,5 +32,6 @@ class TurnDrivetrain : public frc2::CommandHelper<frc2::Command, TurnDrivetrain>
   private:
     Drivetrain* m_drivetrain;
     double turn;
-    frc::PIDController pid{0.01, 0.005, 0.001};
+    frc::PIDController pid{frc::SmartDashboard::GetNumber("kP", 0.01), frc::SmartDashboard::GetNumber("kI", 0), frc::SmartDashboard::GetNumber("kD", 0)};
+    //0.12, 0, 0.0006
 };
